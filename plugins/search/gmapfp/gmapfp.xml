@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3" type="plugin" group="search" method="upgrade">
+    <name>plg_search_gmapfp</name>
+    <author>Fabrice4821</author>
+    <creationDate>Mai 2016</creationDate>
+    <authorEmail>webmaster@gmapfp.org</authorEmail>
+    <authorUrl>http://gmapfp.org/</authorUrl>
+    <version>J3_1P</version>
+    <description>PLG_SEARCH_GMAPFP_XML_DESCRIPTION</description>
+    <files>
+        <filename plugin="gmapfp">gmapfp.php</filename>
+		<filename>index.html</filename>
+    </files>
+    <languages>
+        <language tag="fr-FR">languages/fr-FR.plg_search_gmapfp.ini</language>
+        <language tag="en-GB">languages/en-GB.plg_search_gmapfp.ini</language>
+        <language tag="fr-FR">languages/fr-FR.plg_search_gmapfp.sys.ini</language>
+        <language tag="en-GB">languages/en-GB.plg_search_gmapfp.sys.ini</language>
+    </languages>
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+				<field name="search_limit" type="text"
+					default="50"
+					description="PLG_SEARCH_GMAPFP_FIELD_SEARCHLIMIT_DESC"
+					label="PLG_SEARCH_GMAPFP_FIELD_SEARCHLIMIT_LABEL"
+					size="5"
+				/>
+			</fieldset>
+
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,720 @@
+
+body{
+  background: #fff!important;
+}
+a, p, h1, h2, h3, h4, h5, h6, div, span {
+  font-family: @FontFamily;
+  color: #888;
+}
+.apartments_services {
+    ul li{
+      margin-bottom:10px;
+      list-style: none;
+      a{
+        color: #E12525;
+        transition: 0.8s;
+        &:hover{
+          color:hsl(201, 100%, 54%);
+          margin-left: 20px;
+          transition: 0.8s;
+        }
+      }
+    }
+}
+
+h3{
+  text-transform: uppercase;
+  font-size: 20px;
+  color: @colorBlack;
+  border-bottom: 2px solid @styleColor;
+  width: 100%;
+  font-weight: 600;
+}
+h4, .featured_list_title{
+  font-family: @FontFamily;
+  a{
+    font-size: 17px;
+    color: #666 !important;
+    text-transform: uppercase;
+    font-family: @FontFamily;
+    font-weight: 600;
+   }
+}
+.featured_list_viewlisting a{
+  color:@styleColor;
+  font-weight: 600;
+}
+
+.com_realestatemanager_main_search{
+    form{
+      padding-top: 10px;
+      background: #F54545 none repeat scroll 0 0;
+      .borderRadius;
+      span, .search_title{
+        color: @colorWhite;
+      }
+      .search_houses, .col_box, .col_box_1, .col_box_2 {
+        margin: 20px 0 0 20px;
+      }
+      .search_rent .box_from{
+        @media (max-width: 1024px){
+            // margin-left: 20px;
+          }
+        &:first-child{
+          margin-bottom: 16px;
+        }
+      }
+      .search_button{
+        margin: 0 15px;
+        .button{
+          margin: 25px 0px 38px 0px;
+          background: @colorBlack;
+          color: @colorWhite;
+          font-weight: 600;
+          text-transform: uppercase;
+          .transition;
+
+          &:hover{
+            background: @colorWhite;
+            color: @colorBlack !important;
+          }
+        }
+      }
+    }
+}
+form{
+  .button{
+    color: @colorWhite;
+    background: @styleColor;
+    text-transform: uppercase;
+    &:hover{
+      background:@colorBlack;
+    }
+  }
+}
+#footer {
+ .footer_menu{
+  display: none;
+ }
+ .content_footer {
+   margin: 15px 0;
+   a{
+    &:hover{
+      color: @colorWhite;
+      }
+    }
+  }
+
+}
+#rem_house_titlebox{
+  text-transform: uppercase;
+
+}
+
+
+.featured_houses_line, .re_map_canvas{
+  .borderRadius;
+   background: none repeat scroll 0% 0% #F8F8F8;
+}
+.reg a.btn{
+  border: 1px solid hsla(0, 0%, 0%, 0);
+  background: #E10606 !important;
+  border-radius: 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  &:hover{
+            background: @colorBlack !important;
+            border: 1px solid @colorBlack;
+            color: @colorWhite !important;
+            a{
+                color: @colorWhite;
+            }
+        }
+}
+.btn{
+  border-radius: 0;
+}
+.active{
+  a{
+        background: #E10606 !important;
+        border: 1px solid #E10606;
+        text-transform: uppercase;
+        color: @colorWhite !important;
+        font-weight: 600;
+        border-radius: 0 !important;
+        &:hover{
+            background: @colorBlack !important;
+            border: 1px solid @colorBlack;
+            color: @colorWhite !important;
+        }
+  }
+}
+.controls, .filter-search{
+  .btn.btn-primary{
+        background: #E10606 !important;
+        border: 1px solid #E10606;
+        text-transform: uppercase;
+        color: @colorWhite !important;
+        border-radius: 0;
+        font-weight: 600;
+        &:hover{
+            background: @colorBlack !important;
+            border: 1px solid @colorBlack;
+            color: @colorWhite !important;
+            a{
+                color: @colorWhite;
+            }
+        }
+  }
+}
+
+.featured_houses_line {
+  .col_rent{
+    background: #E12525;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 2px 7px;
+    font-weight: 600;
+  }
+}
+.custom img{
+  // margin-top: 55px;
+  .borderRadius;
+}
+.featured_list_viewlisting{
+  padding: 0!important;
+}
+.featured_houses_line .rem_type_catlist {
+  background: none repeat scroll 0% 0% #E4E3DF;
+    i {
+    color: #676767;
+     }
+ }
+ .re_map_canvas, #map_canvas{
+    margin-bottom: 0px !important;
+ }
+ .soc_icons{
+  a{
+    font-family: FontAwesome !important;
+   }
+ }
+ .componentheading {
+  .col_text_2{
+    text-transform: uppercase;
+    font-size: 19px;
+    font-weight: 600;
+  }
+ }
+ .basictable-1 div{
+  &:last-child{
+    display: none;
+  }
+ }
+ .contact{
+   .thumbnail.pull-right {
+      float: left !important;
+      width: 25%;
+      @media (max-width: 414px){
+        width: 100%;
+      }
+
+    }
+   .page-header{
+      border-bottom: 2px solid @styleColor;
+      padding-bottom: 0px;
+      h2{
+        text-transform: uppercase;
+        font-size: 24px;
+        font-weight: 600;
+        span{
+          color: @colorBlack;
+        }
+      }
+    }
+   dl {
+      float: left;
+      .jicons-icons {
+         display: none;
+      }
+      .contact-street{
+        display: inline-block;
+        width: 25%;
+         @media (max-width: 414px) {
+          width: 100%;
+         }
+      }
+    }
+   .contact-form {
+    margin-left: 30%;
+    @media (max-width: 414px) {
+       clear: both;
+       margin-left: 0;
+    }
+      legend {
+        display: none;
+      }
+      .form-actions{
+        .btn-primary{
+          background: @styleColor;
+          color: @colorWhite;
+          border: @styleColor;
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: 14px;
+          &:hover{
+            background:  @colorBlack;
+          }
+        }
+      }
+    }
+    dd{
+      margin-bottom: 10px;
+      .contact-street{
+        text-indent: 20px;
+      }
+      .contact-emailto a{
+          color:@colorBlack;
+          &:hover{
+            color:@styleColor;
+          }
+      }
+    }
+}
+.row.map_block{
+  margin: 0 !important;
+  .col-lg-12 {
+  padding: 0 !important;
+  }
+}
+.re_map_canvas{
+  width: 100% !important;
+}
+ .re_map_canvas{
+  @media (max-width: 1024px){
+    height: 505px !important;
+    width: 100% !important;
+  }
+  @media (max-width: 768px){
+    width: 424px !important;
+  }
+  @media (max-width: 767px){
+    float:left;
+    width: 100% !important;
+    height: 300px !important;
+  }
+}
+.navbar-toggle{
+  @media (max-width: 767px){
+    background: @colorWhite;
+  }
+}
+.top_menu .navbar-toggle{
+  @media (max-width: 767px){
+    display: none;
+  }
+}
+
+
+
+.moduletable_main_search #rem_mod_search{
+
+
+  form>*:nth-child(3){
+  width: 44%;
+  }
+
+  form>*:nth-child(4){
+  width: 44%;
+  }
+
+   .col_box_2 span{
+    display: block;
+   }
+
+   // #listing_type,
+   // #listing_status{
+   //  margin-left: 29%;
+   // }
+
+    input.hasDatepicker {
+    width: 98px;
+    }
+}
+
+@media (max-width: 1200px){
+
+
+  .moduletable_main_search #rem_mod_search{
+    display: block !important;
+
+    form>*{
+      display: block !important;
+      margin-left: auto;
+      margin-right: auto !important;
+      text-align: center;
+
+        .search_houses,
+        .col_box,
+         .col_box_1,
+          .col_box_2{
+            margin: 0px;
+            margin-top: 15px;
+          }
+    }
+
+    form>*:nth-child(3) {
+      width: 80%;
+  }
+
+    .col_box span,
+    .box_from span,
+     .col_box_2 span{
+      display: block;
+      width: 100%;
+    }
+
+
+    form>*:nth-child(4) {
+      width: 100%;
+    }
+
+      input.hasDatepicker,
+    .inputbox{
+      width: 80%;
+    }
+
+    input.hasDatepicker,
+    .inputbox{
+      box-sizing: border-box;
+      height: auto;
+    }
+
+    #catid,
+    #listing_type,
+    #listing_status{
+    width: 80% !important;
+    }
+
+    #listing_type,
+    #listing_status{
+      margin-left: auto;
+    }
+
+  }
+
+}
+
+
+@media (max-width: 768px){
+
+  .com_realestatemanager_main_search form .search_button .button{
+    width: (100% / 3) * 2;
+    margin-top: 15px;
+  }
+
+}
+
+@media (max-width: 320px){
+
+  .featured_houses_line>*:nth-child(1){
+    width: 100%;
+    margin-right: 0px !important;
+    float: none !important;
+  }
+
+  .featured_houses_line img{
+
+    width: 100% !important;
+    height: auto !important;
+
+  }
+
+
+}
+
+.block_history {
+   #_ {
+      position: relative;
+      padding-bottom: 3.3em;
+      text-align: center;
+      &:before {
+        content: "";
+        width: 0px;
+        position: absolute;
+        left: -1px;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        bottom: 2.6em;
+        height: 0px;
+        border-style: solid;
+        border-width: 9px 9px 0 9px;
+        border-color: #0061CC transparent transparent transparent;
+      }
+      &:after {
+        content: "";
+        height: 2.6em;
+        width: 1px;
+        background: #000000;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 2.2em;
+        margin: auto;
+        text-align: center;
+      }
+  }
+  .date_history {
+    font-size: 36px;
+    line-height: 36px;
+    font-weight: bold;
+    text-align: center;
+  }
+  p {
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #888888;
+    text-align: center;
+  }
+  ul {
+    li {
+      list-style: none;
+      position: relative;
+      overflow: hidden;
+      margin: 40px 0;
+      .left_history {
+        width: 50%;
+        padding: 2em;
+        font-size: 18px;
+        line-height: 24px;
+        float: left;
+        text-align: left;
+        strong {
+          font-size: 36px;
+          line-height: 36px;
+          display: block;
+          margin-bottom: 10px;
+        }
+        img {
+          width: 200px;
+          height: 200px;
+          border: 1px #EAEAEA solid;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -o-border-radius: 50%;
+          border-radius: 50%;
+        }
+        p {
+          margin-top: 44px;
+          text-align: right;
+        }
+      }
+      .right_history {
+        width: 50%;
+        padding: 2em;
+        font-size: 18px;
+        line-height :24px;
+        float: right;
+        text-align: right;
+        border-left: 1px solid #000000;
+        strong {
+          font-size: 36px;
+          line-height: 36px;
+          display: block;
+          margin-bottom: 10px;
+          text-align: left;
+        }
+        p {
+          text-align: left;
+          margin-top: 44px;
+        }
+        img {
+          width: 200px;
+          height: 200px;
+          border: 1px #EAEAEA solid;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -o-border-radius: 50%;
+          border-radius: 50%;
+        }
+      }
+    }
+    li.ab {
+      &:before {
+        position: absolute;
+        content: "";
+        width: 1px;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 0;
+      }
+      &:after {
+        position: absolute;
+        content: "";
+        width: 11px;
+        height: 10px;
+        top: 0;
+        bottom: 0;
+        left: 2px;
+        right: 0;
+        margin: auto;
+        z-index: 0;
+        background: #E12525;
+      }
+    }
+  }
+}
+.block_history {
+    h1 {
+      text-transform: uppercase;
+      font-size: 25px !important;
+      font-weight: bold;
+      text-align: center;
+      color: #000000;
+    }
+}
+.about_us_page {
+    h4 {
+      text-transform: uppercase;
+      font-size: 25px;
+      font-weight: bold;
+      text-align: center;
+      color: #000000;  
+    }
+}
+.service_textblock {
+  h2 {
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      color: #000000;
+  }    
+  .service_box {
+    padding: 20px;
+    h2 {
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      color: #000000;
+      margin-top: 0;
+    }
+    img {
+      width: 100%;
+      height: 300px;
+      margin-bottom: 20px;
+    }
+  }
+}
+.manager_content {
+  margin-bottom: 30px;
+  background: #ffffff;
+  .block_manag {
+    position: relative;
+    height: 360px;
+    overflow: hidden;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    img{
+      width: 100%;
+        @media (max-width: 767px) {
+            display: block;
+            margin: auto;
+        }
+    }
+    &:hover {
+      .post_name {
+        bottom: 0;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+    }
+    .post_name {
+      text-align: center;
+      color: #ffffff;
+      position: absolute;
+      bottom: -45px;
+      left: 0;
+      right: 0;
+      min-height: 100px;
+      width: 100%;
+      z-index: 2;
+      border-left: 9px solid #ff4c55;;
+      border-right: 9px solid #ff4c55;;
+      background: rgba(0,0,0,0.8);
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+      h5 {
+        font-weight: bold;
+        font-size: 20px;
+        color: #fff;
+        line-height: 30px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .manage_desc {
+    padding: 10px 5px;
+  }
+}
+.com-baforms {
+  .ba-row {
+    .ba-btn-submit {
+      text-transform: uppercase;
+      &:hover {
+        background: #000 !important;
+      }
+    }
+  }
+}
+.custom_advertising {
+  margin-top: 54px;
+  img {
+    border-radius: 7px;
+  }
+}
+.bs-example {
+  .active {
+    a {
+      font-weight: normal;
+    }
+  }
+}
+h4 {
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #000000;
+    font-weight: 600;
+}
+.ba-form {
+  .row-fluid.ba-row {
+    .span12 {
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+}
+.panel.panel-primary,
+.panel.panel-success,
+.panel.panel-info,
+.panel.panel-danger,
+.panel.panel-warning {
+  .panel-heading {
+    h3 {
+      border-bottom: none;
+    }
+  }
+}
