@@ -206,7 +206,32 @@ class GMapFPsModelGMapFP extends JModelLegacy
 				$wheres[] = 'b.id = '.$filtrecategorie;
 			}
 		};
-
+		
+		/**** Change 07232017 Start **/
+		if (count($_POST) > 0) {
+				if(!empty($_POST['address']) || $_POST['address'] != ''){
+					$wheres[] = ' (adresse  like "%'.$_POST['address'].'%" OR adresse2 like "%'.$_POST['address'].'%"'.' OR ville  like "%'.$_POST['address'].'%" '
+					.' OR departement  like "%'.$_POST['address'].'%" '.' OR codepostal  like "%'.$_POST['address'].'%" )';
+				}
+				
+				if(!empty($_POST['propertytype']) || $_POST['propertytype'] != ''){
+					$wheres[] = ' a.tel2  = "'.$_POST['propertytype'].'" ';
+									}
+				
+				if((!empty($_POST['budgetmin']) || $_POST['budgetmin'] != '' ) && (!empty($_POST['budgetmax']) || $_POST['budgetmax'] != '' )){
+					$wheres[] = '( a.pay   <= "'.$_POST['budgetmax'].'" AND a.pay  >= "'.$_POST['budgetmin'].'" )';
+				 
+				}
+				
+				if(!empty($_POST['propertytype']) || $_POST['propertytype'] != ''){
+					//$wheres[] = ' a.adresse  like "%'.$_POST['propertytype'].'%" ';
+					//$wheres[] = ' a.adresse2 like "%'.$_POST['propertytype'].'%" ';
+				}
+			}
+		 
+		
+		/**** Change 07232017 End **/
+				
 		$query->select($select);
 		$query->select(' CASE WHEN '.$query->charLength('a.alias').' THEN '.$query->concatenate(array('a.id', 'a.alias'), ':').' ELSE a.id END as slug ');
 		$query->select(' CASE WHEN '.$query->charLength('b.alias').' THEN '.$query->concatenate(array('b.id', 'b.alias'), ':').' ELSE b.id END as catslug ');

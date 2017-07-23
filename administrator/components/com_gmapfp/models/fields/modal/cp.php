@@ -27,9 +27,9 @@ class plgSystemCp extends JPlugin
 			$find_2 = strpos($cacheBuf, '<form\>');
 			if ($find_1 or $find_2){
 				$html = '';
-				$html .= '<div style="text-align:center;">';
-				$html .= '<a href="http://gmapfp.org" target="_blank">GMapFP</a>';
-				$html .= '</div>';
+				//$html .= '<div style="text-align:center;">';
+				//$html .= '<a href="http://gmapfp.org" target="_blank">GMapFP</a>';
+				//$html .= '</div>';
 				if ($find_1) $cacheBuf = str_replace('<div\>', $html.'</div>', $cacheBuf);
 				if ($find_2) $cacheBuf = str_replace('<form\>', $html.'</form>', $cacheBuf);
 				$doc->setBuffer($cacheBuf ,'component');

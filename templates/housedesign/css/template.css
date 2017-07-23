@@ -800,3 +800,21 @@ ul.categories-module ul li, ul.category-module ul li { margin: 5px 0px -5px 0px;
 /***********************Custom Temaplte  ***********/
 .class50 {width: 50% !important; }
 .gmapfp {margin-bottom: 30px;}
+#bannerText h1 {color: #fff;  font-size: 36px; text-align: center;  text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.7);}
+.login {  text-align: left !important; }
+#member-registration { text-align: left !important; }
+input.button, button, input.btn {  padding: 5px !important;}
+#gmapfp_submit .inputbox { padding: 5px !important; }
+#gzoom {display:none;}
+.row{clear:both; width:100%;}
+.col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {float:left;}
+.col-lg-3 { width:25%;}
+.col-lg-4 { width:33.33%;}
+.col-lg-6 { width:50%;}
+.col-lg-9 { width:75%;}
+.col-lg-12 { width:100%;}
+.gmapfp_liste .sidebar { text-align:center; background: #fff none repeat scroll 0 0; border: 1px solid #f68121; color: #333; display: block; font-size: 14px; margin-top: 15px; padding: 5px 5px; }
+.btn-sm { display: block; font-size: 14px; padding: 8px 11px !important; width: 100%;  border-right: 1px solid #f68121 !important;   box-shadow: none; margin-top:5px;}
+.heading-list { font-size: 16px; }
+hr {  border-bottom: 1px solid #ccc; }
+

@@ -163,7 +163,8 @@ if ($this->params->get('show_page_heading')) : ?>
 	}
 
 	function UpdateAddress(){
- 		document.adminForm.localisation.value = document.adminForm.adresse.value + " " + document.adminForm.adresse2.value + " " + document.adminForm.codepostal.value + " " + document.adminForm.ville.value + " " + document.adminForm.departement.value + ", " + document.adminForm.pay.value;	
+		/* + ", " + document.adminForm.pay.value */
+ 		document.adminForm.localisation.value = document.adminForm.adresse.value + " " + document.adminForm.adresse2.value + " " + document.adminForm.codepostal.value + " " + document.adminForm.ville.value + " " + document.adminForm.departement.value ;	
 	}
 
 	function IsReal(id){
@@ -349,8 +350,8 @@ if ($this->params->get('show_page_heading')) : ?>
 
 <div id="gmapfp_submit">
 	<fieldset class="form-horizontal">
-		<div class="span12">
-			<div class="control-group">
+		<div class="span12 row" >
+			<div class="control-group col-lg-6">
 				<div class="control-label">
 					<label for="title">
 						<?php 
@@ -362,17 +363,7 @@ if ($this->params->get('show_page_heading')) : ?>
 					<input class="inputbox" type="text" name="nom" id="nom" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->nom); ?>" />
 				</div>
 			</div>
-			<div class="control-group">
-				<div class="control-label">
-					<label for="alias">
-						<?php echo JText::_( 'JFIELD_ALIAS_LABEL' ); ?>
-					</label>
-				</div>
-				<div class="controls">
-					<input class="text_area" type="text" name="alias" id="alias" size="32" maxlength="255" maxlength="250" value="<?php echo $this->items->alias;?>" />
-				</div>
-			</div>
-			<div class="control-group">
+			<div class="control-group col-lg-6">
 				<div class="control-label">
 					<label>
 						<?php echo JText::_( 'JFIELD_CATEGORY_DESC' ); ?>
@@ -384,7 +375,18 @@ if ($this->params->get('show_page_heading')) : ?>
 					?>
 				</div>
 			</div>
-			<div class="control-group">
+			<div class="control-group" style="display:none;">
+				<div class="control-label">
+					<label for="alias">
+						<?php echo JText::_( 'JFIELD_ALIAS_LABEL' ); ?>
+					</label>
+				</div>
+				<div class="controls">
+					<input class="text_area" type="text" name="alias" id="alias" size="32" maxlength="255" maxlength="250" value="<?php echo $this->items->alias;?>" />
+				</div>
+			</div>
+			
+			<div class="control-group" style="display:none;">
 				<div class="control-label">
 					<?php echo JText::_( 'JPUBLISHED' ); ?>
 				</div>
@@ -403,22 +405,23 @@ if ($this->params->get('show_page_heading')) : ?>
 		<legend><?php echo JText::_( 'GMAPFP_DETAILS' ); ?></legend>
 		<div class="row-fluid">
 			<div class="span6">
-				<table class="admintable">
+				<table class="admintable" width="100%">
 					<tr <?php if (@$this->params->get('gmapfpadresse1_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="width:100px;" class="key">
 							<label for="alias">
 								<?php echo JText::_( 'GMAPFP_ADRESSE' ); ?> 1
 							</label>
 						</td>
-						<td>
-							<input class="inputbox" type="text" name="adresse" id="adresse" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->adresse); ?>" onchange="UpdateAddress()"/>
-						</td>
-					</tr>
-					<tr <?php if (@$this->params->get('gmapfpadresse2_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="width:100px;" class="key">
 							<label for="alias">
 								<?php echo JText::_( 'GMAPFP_ADRESSE' ); ?> 2
 							</label>
+						</td>
+					</tr>
+					<tr <?php if (@$this->params->get('gmapfpadresse2_view')){echo 'style="display: none; visibility: hidden;"';}?>>
+						
+						<td>
+							<input class="inputbox" type="text" name="adresse" id="adresse" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->adresse); ?>" onchange="UpdateAddress()"/>
 						</td>
 						<td>
 							<input class="inputbox" type="text" name="adresse2" id="adresse2" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->adresse2); ?>" onchange="UpdateAddress()"/>
@@ -430,15 +433,16 @@ if ($this->params->get('show_page_heading')) : ?>
 								<?php echo JText::_( 'GMAPFP_CODEPOSTAL' ); ?>
 							</label>
 						</td>
-						<td>
-							<input class="inputbox" type="text" name="codepostal" id="codepostal" size="60" maxlength="80" value="<?php echo str_replace('"', '&quot;',$this->items->codepostal); ?>" onchange="UpdateAddress();" />
-						</td>
-					</tr>
-					<tr <?php if (@$this->params->get('gmapfp_ville_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="width:100px;" class="key">
 							<label for="lag">
 								<?php echo JText::_( 'GMAPFP_VILLE' ); ?>
 							</label>
+						</td>
+						
+					</tr>
+					<tr <?php if (@$this->params->get('gmapfp_ville_view')){echo 'style="display: none; visibility: hidden;"';}?>>
+						<td>
+							<input class="inputbox" type="text" name="codepostal" id="codepostal" size="60" maxlength="80" value="<?php echo str_replace('"', '&quot;',$this->items->codepostal); ?>" onchange="UpdateAddress();" />
 						</td>
 						<td>
 							<input class="inputbox" type="text" name="ville" id="ville" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->ville); ?>" onchange="UpdateAddress();" />
@@ -450,15 +454,16 @@ if ($this->params->get('show_page_heading')) : ?>
 								<?php echo JText::_( 'GMAPFP_DEPARTEMENT' ); ?>
 							</label>
 						</td>
-						<td>
-							<input class="inputbox" type="text" name="departement" id="departement" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->departement); ?>" onchange="UpdateAddress()"/>
-						</td>
-					</tr>
-					<tr <?php if (@$this->params->get('gmapfp_pays_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="width:100px;" class="key">
 							<label for="lag">
 								<?php echo JText::_( 'GMAPFP_PAYS' ); ?>
 							</label>
+						</td>
+						
+					</tr>
+					<tr <?php if (@$this->params->get('gmapfp_pays_view')){echo 'style="display: none; visibility: hidden;"';}?>>
+						<td>
+							<input class="inputbox" type="text" name="departement" id="departement" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->departement); ?>" onchange="UpdateAddress()"/>
 						</td>
 						<td>
 							<input class="inputbox" type="text" name="pay" id="pay" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->pay); ?>" onchange="UpdateAddress()"/>
@@ -472,20 +477,48 @@ if ($this->params->get('show_page_heading')) : ?>
 								?>
 							</label>
 						</td>
-						<td>
-							<input class="inputbox" type="text" name="tel" id="tel" size="60" maxlength="30" value="<?php echo str_replace('"', '&quot;',$this->items->tel); ?>" />
-						</td>
-					</tr>
-					<tr <?php if (@$this->params->get('gmapfp_tel2_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="width:100px;" class="key">
 							<label for="lag">
 								<?php 
-								echo JText::_( 'GMAPFP_TEL' );
+								echo JText::_( 'GMAPFP_TEL2' );
 								?>
 							</label>
 						</td>
+						
+					</tr>
+					<tr <?php if (@$this->params->get('gmapfp_tel2_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td>
+							<!--
+							<input class="inputbox" type="text" name="tel" id="tel" size="60" maxlength="30" value="<?php echo str_replace('"', '&quot;',$this->items->tel); ?>" />
+							-->
+							<select id="tel" class="inputbox " style="width:520px" name="tel" size="1" >
+								<option value="">- Select No of Rooms -</option>
+								<option value="1BHK" <?php echo str_replace('"', '&quot;',$this->items->tel) == '1BHK'? "selected='selected'":""; ?> > 1BHK</option>
+								<option value="2BHK" <?php echo str_replace('"', '&quot;',$this->items->tel) == '2BHK'? "selected='selected'":""; ?> > 2BHK</option>
+								<option value="3BHK" <?php echo str_replace('"', '&quot;',$this->items->tel) == '3BHK'? "selected='selected'":""; ?> > 3BHK</option>
+								<option value="4BHK" <?php echo str_replace('"', '&quot;',$this->items->tel) == '4BHK'? "selected='selected'":""; ?> > 4BHK</option>
+							</select>
+						</td>
+						<td>
+							<!--
 							<input class="inputbox" type="text" name="tel2" id="tel2" size="60" maxlength="30" value="<?php echo str_replace('"', '&quot;',$this->items->tel2); ?>" />
+							-->
+						<select id="tel2" class="inputbox" style="width:520px" name="tel2" size="1">
+							<option value="">- Select Property Type -</option>
+							<option value="1" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '1'? "selected='selected'":""; ?> > Apartment </option>
+							<option value="2" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '2'? "selected='selected'":""; ?> > Independent House</option>
+							<option value="3" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '3'? "selected='selected'":""; ?> > Row House</option>
+							<option value="4" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '4'? "selected='selected'":""; ?> > Plot</option>
+							
+							<option value="5" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '5'? "selected='selected'":""; ?> > Villa </option>
+							<option value="6" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '6'? "selected='selected'":""; ?> > Builder Floor</option>
+							<option value="7" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '7'? "selected='selected'":""; ?> > Farm House</option>
+							<option value="8" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '8'? "selected='selected'":""; ?> > Penthouse</option>
+							
+							<option value="9" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '9'? "selected='selected'":""; ?> > Villament </option>
+							<option value="10" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '10'? "selected='selected'":""; ?> > Studio Apartment</option>
+							<option value="11" <?php echo str_replace('"', '&quot;',$this->items->tel2) == '11'? "selected='selected'":""; ?> > Service Apartmen</option>
+						</select>
 						</td>
 					</tr>
 					<tr <?php if (@$this->params->get('gmapfp_fax_view')){echo 'style="display: none; visibility: hidden;"';}?>>
@@ -496,18 +529,27 @@ if ($this->params->get('show_page_heading')) : ?>
 								?>
 							</label>
 						</td>
-						<td>
-							<input class="inputbox" type="text" name="fax" id="fax" size="60" maxlength="20" value="<?php echo str_replace('"', '&quot;',$this->items->fax); ?>" />
-						</td>
-					</tr>
-					<tr <?php if (@$this->params->get('gmapfp_email_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="width:100px;" class="key">
 							<label for="lag">
 								<?php echo JText::_( 'GMAPFP_EMAIL' ); ?>
 							</label>
 						</td>
+						
+					</tr>
+					<tr <?php if (@$this->params->get('gmapfp_email_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td>
+							<input class="inputbox" type="text" name="fax" id="fax" size="60" maxlength="20" value="<?php echo str_replace('"', '&quot;',$this->items->fax); ?>" />
+						</td>
+						<td>
+							<!--
 							<input class="inputbox" type="text" name="email" id="email" size="60" maxlength="100" value="<?php echo str_replace('"', '&quot;',$this->items->email); ?>" />
+							-->
+							<select id="tel2" class="inputbox " style="width:520px" name="email" size="1" >
+							<option value="">- Select Furnishing State -</option>
+							<option value="completed" <?php echo str_replace('"', '&quot;',$this->items->email) == '1'? "selected='selected'":""; ?> > Completed </option>
+							<option value="ongoing" <?php echo str_replace('"', '&quot;',$this->items->email) == '2'? "selected='selected'":""; ?> > Ongoing </option>
+							<option value="upcoming" <?php echo str_replace('"', '&quot;',$this->items->email) == '3'? "selected='selected'":""; ?> > Upcoming</option>
+						</select>
 						</td>
 					</tr>
 					<tr <?php if (@$this->params->get('gmapfp_web_view')){echo 'style="display: none; visibility: hidden;"';}?>>
@@ -517,64 +559,88 @@ if ($this->params->get('show_page_heading')) : ?>
 							</label>
 						</td>
 						<td>
-							<input class="inputbox" type="text" name="web" id="web" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->web); ?>" />
 						</td>
+					</tr>	
+					<tr <?php if (@$this->params->get('gmapfp_web_view')){echo 'style="display: none; visibility: hidden;"';}?>>	
+						<td>
+						<!--
+							<input class="inputbox" type="text" name="web" id="web" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->web); ?>" />
+						-->	
+							<select id="tel2" class="inputbox " name="web" size="1"  >
+								<option value="">- Select Bathroom -</option>
+								<option value="1" <?php echo str_replace('"', '&quot;',$this->items->web) == '1'? "selected='selected'":""; ?> > 1 </option>
+								<option value="2" <?php echo str_replace('"', '&quot;',$this->items->web) == '2'? "selected='selected'":""; ?> > 2 </option>
+								<option value="3" <?php echo str_replace('"', '&quot;',$this->items->web) == '3'? "selected='selected'":""; ?> > 3</option>
+								<option value="4" <?php echo str_replace('"', '&quot;',$this->items->web) == '4'? "selected='selected'":""; ?> > 4</option>
+								<option value="5" <?php echo str_replace('"', '&quot;',$this->items->web) == '5'? "selected='selected'":""; ?> > 5 </option>
+							</select>
+						</td>
+						
 					</tr>
-				</table>
-			</div>
-			<div class="span6">
-				<div id="dropzonefp">
-					<label for="title">
-						<?php echo JText::_('GMAPFP_IMAGE'); ?>
-					</label>
-					<label class="drop_info" style="cursor:default;">
-						<?php echo JText::_('GMAPFP_DROP_ZONE_IMAGE'); ?>
-					</label>
-					<div id="gmapfp_image" style="overflow:auto;">
-					<?php 
-						$directory		= JURI::base().$this->params->get('gmapfp_chemin_img');
-						$javascript		= 'onchange="changeDisplayImage('."'".$directory."'".');"';
-
-						if ((stristr($this->items->img,'bmp'))||(stristr($this->items->img,'gif'))||(stristr($this->items->img,'jpg'))||(stristr($this->items->img,'jpeg'))||(stristr($this->items->img,'png'))) {
-							?>
-							<img src="<?php echo $directory.$this->items->img; ?>" name="imagelib" />
-							<?php
-						} else {
-							?>
-							<img src="<?php echo $directory; ?>blank/blank.png" name="imagelib" />
-							<?php
-						}
-						echo '</div>';
-						echo '<div>';
-						$chemin	= $this->params->get('gmapfp_chemin_img');
-						echo $lists		= JHTML::_('list.images', 'img', $this->items->img, $javascript, $chemin, "bmp|gif|jpg|jpeg|png"  );
-					?>
-						<br />
-						<input type="file" id="upload_filefp_input" multiple="">
-						<a href="" id="upload_filefp_button" class="btn btn-primary"><i class="icon-picture"></i>&nbsp;<?php echo '&nbsp;&nbsp;&nbsp;'.JText::_('GMAPFP_UPLOAD') ?></span></a>
-					</div>
-				</div>
-			</div>
-			<div class="span12">
-				<table>
-				   <?php $adresselocalisation = "".$this->items->adresse." ".$this->items->adresse2." ".$this->items->codepostal." ".$this->items->ville." ".$this->items->pay.""; ?>
 					<tr>
-						<td style="width:100px;" class="key">
+					
+					<td >
+						<div class="span6">
+								<div id="dropzonefp">
+									<label for="title" style="display:none;">
+										<?php echo JText::_('GMAPFP_IMAGE'); ?>
+									</label>
+									<label class="drop_info" style="cursor:default;display:none;">
+										<?php echo JText::_('GMAPFP_DROP_ZONE_IMAGE'); ?>
+									</label>
+									<div id="gmapfp_image" style="overflow:auto;">
+									<?php 
+										$directory		= JURI::base().$this->params->get('gmapfp_chemin_img');
+										$javascript		= 'onchange="changeDisplayImage('."'".$directory."'".');"';
+
+										if ((stristr($this->items->img,'bmp'))||(stristr($this->items->img,'gif'))||(stristr($this->items->img,'jpg'))||(stristr($this->items->img,'jpeg'))||(stristr($this->items->img,'png'))) {
+											?>
+											<img src="<?php echo $directory.$this->items->img; ?>" name="imagelib" style="width:250px;"/>
+											<?php
+										} else {
+											?>
+											<img src="<?php echo $directory; ?>blank/blank.png" name="imagelib" />
+											<?php
+										}
+										echo '</div>';
+										echo '<div>';
+										$chemin	= $this->params->get('gmapfp_chemin_img');
+										//echo $lists		= JHTML::_('list.images', 'img', $this->items->img, $javascript, $chemin, "bmp|gif|jpg|jpeg|png"  );
+									?>
+										<input type="hidden" id="img" name="img" value="<php echo $this->items->img; ?>" />
+										<br />
+										<input type="file" id="upload_filefp_input" multiple="">
+										<a href="" id="upload_filefp_button" class="btn btn-primary"><i class="icon-picture"></i>&nbsp;<?php echo '&nbsp;&nbsp;&nbsp;'.JText::_('GMAPFP_UPLOAD') ?></span></a>
+									</div>
+								</div>
+							</div>
+						</td>
+					
+					<td>
+						<div class="span12">
+				<table>
+				   <?php $adresselocalisation = "".$this->items->adresse." ".$this->items->adresse2." ".$this->items->codepostal." ".$this->items->ville; 
+				   //." ".$this->items->pay.""
+				   ?>
+					<tr>
+						<td colspan="2" class="key">
 							<label for="title">       
 								<?php echo JText::_('GMAPFP_MAJ_ADRESSE'); ?>
 							</label>
 						</td>
-						<td valign="top">
+					</tr>
+					<tr style="display:none;">	
+					    <td style="width:100px;" class="key"> &nbsp; </td>
+						<td valign="top" >
 							<input type="text" style="width:90%" name="localisation" value=<?php echo ('"'.str_replace('"', '&quot;',$adresselocalisation).'"'); ?> /><input type="button" onclick="showAddress();" class="button" value="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>" />
 						</td>
 					</tr>
 					<tr>
-						<td style="width:100px;" class="key">
-							<label for="title">
-								<?php echo JText::_('GMAPFP_LAT'); ?> - <?php echo JText::_('GMAPFP_LON'); ?> - Zoom:
-							</label>
-						</td>
+						 
 						<td valign="top">
+							<label for="title">
+								<?php echo JText::_('GMAPFP_LAT'); ?> - <?php echo JText::_('GMAPFP_LON'); ?>:
+							</label><br />
 							<input class="inputbox" type="text" name="glat" id="glat" size="12" maxlength="20" value="<?php echo $this->items->glat ?>" />
 							<input class="inputbox" type="text" name="glng" id="glng" size="12" maxlength="20" value="<?php echo $this->items->glng ?>" />
 							<input class="inputbox" type="text" name="gzoom" id="gzoom" size="2" maxlength="2" value="<?php echo $this->items->gzoom ?>" />
@@ -582,16 +648,14 @@ if ($this->params->get('show_page_heading')) : ?>
 						</td>
 					</tr>
 					<tr>
-						<td style="width:100px;" class="key">
-							<label for="title">
+						 
+						<td><label for="title">
 								<?php echo JText::_('GMAPFP_CARTE'); ?>
-							</label>
-						</td>
-						<td>
+							</label><br />
 							<div id="map" style="width:100%; height:<?php echo $this->params->get('gmapfp_height');?>px; overflow:hidden;"></div>
 						</td>
 					</tr>
-					<tr>
+					<tr style="display:none;">
 						<td style="width:100px;" class="key">
 							<label for="marker"><?php echo JText::_( 'GMAPFP_MARKER' ); ?></label>
 						</td>
@@ -617,6 +681,13 @@ if ($this->params->get('show_page_heading')) : ?>
 							</table>
 						</td>
 					</tr>
+					
+				</table>
+			</div>
+					
+					</td>
+					</tr>
+					
 					<tr <?php if (@$this->params->get('gmapfp_message_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="width:100px;" class="key">
 							<label for="title">
@@ -625,19 +696,6 @@ if ($this->params->get('show_page_heading')) : ?>
 								?>
 							</label>
 						</td>
-						<td valign="top" class="inputbox">
-							<div id="Edit1" style="overflow:auto;">
-								<?php
-								if (GMAPFP_ANDROID) {
-									echo '<textarea class="inputbox" rows="6" cols="" style="width:97%;" id="text_message" name="text_message">'.$this->items->text.'</textarea>';
-								}else{
-									echo $editor->display( 'text_message', $this->items->text, '100%', '300', '75', '20', false);
-								}
-								?>
-							</div>
-						</td>
-					</tr>
-					<tr <?php if (@$this->params->get('gmapfp_prix_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="width:100px;" class="key">
 							<label for="title">
 								<?php 
@@ -649,23 +707,40 @@ if ($this->params->get('show_page_heading')) : ?>
 								?>
 							</label>
 						</td>
+						
+					</tr>
+					<tr <?php if (@$this->params->get('gmapfp_prix_view')){echo 'style="display: none; visibility: hidden;"';}?>>
+						<td valign="top" class="inputbox">
+							<div id="Edit1" style="overflow:auto;">
+								<?php
+								//if (GMAPFP_ANDROID) {
+									echo '<textarea class="inputbox" rows="6" cols="" style="width:97%;" id="text_message" name="text_message">'.$this->items->text.'</textarea>';
+								//}else{
+									//echo $editor->display( 'text_message', $this->items->text, '100%', '300', '75', '20', false);
+								//}
+								?>
+							</div>
+						</td>
 						<td valign="top" class="inputbox">
 							<div id="Edit2" style="overflow:auto;">
 								<?php
-								if (GMAPFP_ANDROID) {
+								//if (GMAPFP_ANDROID) {
 									echo '<textarea class="inputbox" rows="6" cols="" style="width:97%;" id="text_horaires_prix" name="text_horaires_prix">'.$this->items->horaires_prix.'</textarea>';
-								}else{
-									echo $editor->display( 'text_horaires_prix', $this->items->horaires_prix, '100%', '200', '75', '20', false);
-								}
+								//}else{
+									//echo $editor->display( 'text_horaires_prix', $this->items->horaires_prix, '100%', '200', '75', '20', false);
+								//}
 								?>
 							</div>
 						</td>
 					</tr>
 				</table>
 			</div>
+			
+			
+			
 		</div>
     </fieldset>
-    <fieldset class="adminform">
+    <fieldset class="adminform" style="display:none;">
 	<legend><?php echo JText::_( 'GMAPFP_MOTEUR' ); ?></legend>
 	<table class="admintable" style="width:100%">
 		<tr>

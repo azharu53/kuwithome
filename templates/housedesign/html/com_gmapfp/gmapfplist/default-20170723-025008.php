@@ -9,7 +9,7 @@
 	*/
 
 defined('_JEXEC') or die('Restricted access'); 
-//var_dump($this->rows);
+
 //fonction pour execution des plugins dans la personnalisation
 $dispatcher = JDispatcher::getInstance(); 
 JPluginHelper::importPlugin('content'); 
@@ -82,7 +82,7 @@ if ($active->params->get('menu-meta_keywords'))
 				<?php echo $this->escape($this->params->get('page_heading')); ?>
 		</h1>
 <?php endif;
-echo '<div class="gmapfp row">';
+echo '<div class="gmapfp">';
 //affichage des filtres
 if ($this->params->get('gmapfp_filtre')==1) :
 	$layout = JRequest::getVar('layout', '', '', 'str');
@@ -95,8 +95,8 @@ if ($this->params->get('gmapfp_filtre')==1) :
 	$perso = JRequest::getVar('id_perso', 0, '', 'int');
 	
 	echo '<form action="'.JRoute::_('index.php?option=com_gmapfp&view=gmapfplist'.$layout_str.'&id_perso='.$perso.'&Itemid='.$itemid).'" method="post" name="adminForm">';
-	?><div class="table-responsive">
-  		<table  class="gmapfpform table">
+	?>
+		<table  class="gmapfpform">
 			<tr>
 				<td width="60%">
 					<?php echo JText::_( 'GMAPFP_FILTER' ); ?>:
@@ -122,13 +122,12 @@ if ($this->params->get('gmapfp_filtre')==1) :
 				</td>
 			</tr>
 		</table>
-	   </div>
 	</form>
 <?php endif; 
 //fin affichage des filtres
 ?>
-<div class="table-responsive"> <?php //echo $map_px; ?>
-<table class="table blog<?php echo $this->params->get('pageclass_sfx'); ?>" cellpadding="0" cellspacing="0" width="100%">
+<div <?php //echo $map_px; ?>>
+<table class="blog<?php echo $this->params->get('pageclass_sfx'); ?>" cellpadding="0" cellspacing="0">
     <?php
 	//carte en dessous du listing
 	if ($this->params->get('gmapfp_position_liste')==2) {?>
@@ -148,12 +147,11 @@ if ($this->params->get('gmapfp_filtre')==1) :
         <?php };
         //listing
 		?>
-        <td style="vertical-align: top;" width="100%" >
-			<div class="col-lg-6 class50" style="float:left;">
+        <td style="vertical-align: top;" >
             <div class="gmapfp_enveloppe_liste" style="overflow:auto; <?php 
 				if ($this->params->get('gmapfp_position_liste')<2) { 
-					//echo 'width:'.($width_liste2+22).'px; '; 
-					//echo 'height:'.($this->params->get('gmapfp_height')+0).'px; '; 
+					echo 'width:'.($width_liste2+22).'px; '; 
+					echo 'height:'.($this->params->get('gmapfp_height')+0).'px; '; 
 				} ?>
             ">
             <div class="gmapfp_liste" >
@@ -165,33 +163,11 @@ if ($this->params->get('gmapfp_filtre')==1) :
 			}
             $compte = 0;
 			$index_list = 0;
-			$decale=false; 
-			echo '<table  style="width:100%"><tr>';
+			$decale=false;
+			echo '<table  style="width:'.$width_liste.'"><tr>';
             foreach ($this->rows as $row) : ?>
-            	<td nowrap="nowrap" class="gmapfp_article_listing_<?php $index_list++; echo (($index_list%2) XOR $decale); ?>" style="height:120px">
-				<div class="row">
-            	<div class="col-lg-3">
-					<img src="<?php echo JURI::root().'images/gmapfp/'.$row->img;?>" width="100%">
-				</div>
-				<div class="col-lg-6" >
-				    <div style="margin-left:15px;" >
-					<div class="heading-list" ><span><?php echo $row->nom; ?></span></div>
-					<div class="row" style="text-align:left;font-size:15px;line-height: 20px; ">
-						<div class="col-lg-4">Price:<br/><?php echo $row->pay;?></div>
-						<div class="col-lg-4">SqFt:<br/><?php echo $row->fax;?></div>
-						<div class="col-lg-4">Possession:<br/>MAY'2017</div>
-					</div>
-					<div class="col-lg-12" style="font-size:11px;line-height: 12px;">
-					<div style="border-top: 1px solid #ccc; padding-top:10px; margin-top:5px; margin-right:15px;">
-					<strong> Posted By Ownner: <?php $user = JFactory::getUser($row->userid); echo $user->username; ?> </strong>
-					<div><?php echo 'Real estate'; ?></div>
-					</div>
-					</div>
-					
-					</div>
-                </div>
-				<div class="col-lg-3">
-					<?php 
+            	<td nowrap="nowrap" class="gmapfp_article_listing_<?php $index_list++; echo (($index_list%2) XOR $decale); ?>">
+                <?php 
                 if (empty($row->glat)or empty($row->glng)) {
 					echo '<span class="sidebar">';
 				}else{
@@ -203,12 +179,9 @@ if ($this->params->get('gmapfp_filtre')==1) :
                 	$affichage="<img src=".$row->marqueur.">";
                 if ($this->params->get('gmapfp_view_ville'))
                     $affichage .= $row->ville." : ";
-                //echo $affichage.$row->nom; 
-                ?><span> Quick View </span>
-                	 </span> 
-				<button class="btn btn-warning btn-sm" >Contact Seller</button>			
-				</div>	
-                </div>	
+                echo $affichage.$row->nom; 
+                ?>
+                	</span>
             	</td>
             <?php 
 			if ($index_list>=$nbre_col) { 
@@ -221,15 +194,14 @@ if ($this->params->get('gmapfp_filtre')==1) :
             </tr></table>
             </div>
             </div>
-       </div>
+        </td>
     	<?php 
 		//carte dà droite du listing
 		if ($this->params->get('gmapfp_position_liste')==0) {?>
-            <!-- <td style="vertical-align: top;" width="<?php echo $width_carte;?>"> -->
-                <div class="col-lg-6 class50" style="float:left;">   <?php echo $this->map; ?></div>
-            
+            <td style="vertical-align: top;" width="<?php echo $width_carte;?>">
+                <div>   <?php echo $this->map;?></div>
+            </td>
         <?php };?>
-        </td>
     </tr>
     <?php 
 	//carte sous le listing
@@ -242,12 +214,11 @@ if ($this->params->get('gmapfp_filtre')==1) :
     <?php };?>
 </table>
 </div>
-
 <?php
 if (!empty($this->perso->conclusion_detail)) {
 	$article->text=$this->perso->conclusion_detail; 
 	$results = $dispatcher->trigger('onContentPrepare', array ('com_gmapfp', & $article, & $this->params, 0));
 	echo $article->text;
 }
-?> 
- 
+?>
+<div\>

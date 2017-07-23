@@ -151,8 +151,7 @@ if (empty($_zoom)) {$_zoom = 10;};
     }
 
 	function UpdateAddress(){
-		/* + ", " + document.adminForm.pay.value */
- 		document.adminForm.localisation.value = document.adminForm.adresse.value + " " + document.adminForm.adresse2.value + " " + document.adminForm.codepostal.value + " " + document.adminForm.ville.value + " " + document.adminForm.departement.value + ", india" ;	
+ 		document.adminForm.localisation.value = document.adminForm.adresse.value + " " + document.adminForm.adresse2.value + " " + document.adminForm.codepostal.value + " " + document.adminForm.ville.value + " " + document.adminForm.departement.value + ", " + document.adminForm.pay.value;	
 	}
 
 	function IsReal(id){
@@ -416,7 +415,7 @@ if (empty($_zoom)) {$_zoom = 10;};
 							<input class="inputbox" type="text" name="departement" id="departement" onchange="UpdateAddress();" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->departement); ?>" />
 						</td>
 					</tr>
-					<tr><!--
+					<tr>
 						<td class="control-label">
 							<label for="lag">
 								<?php echo JText::_( 'GMAPFP_PAYS' ); ?>:
@@ -425,19 +424,9 @@ if (empty($_zoom)) {$_zoom = 10;};
 						<td class="controls">
 							<input class="inputbox" type="text" name="pay" id="pay" onchange="UpdateAddress();" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->pay); ?>" />
 						</td>
-						-->
-						<td class="control-label">
-							<label for="lag">
-								<?php echo JText::_( 'Price' ); ?>:
-							</label>
-						</td>
-						<td class="controls">
-							<input class="inputbox" type="text" name="pay" id="pay" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->pay); ?>" />
-							<br /><br />
-						</td>
 					</tr>
 					<tr>
-						<!--<td class="control-label">
+						<td class="control-label">
 							<label for="lag">
 								<?php echo JText::_( 'GMAPFP_TEL' ); ?>:
 							</label>
@@ -445,58 +434,18 @@ if (empty($_zoom)) {$_zoom = 10;};
 						<td class="controls">
 							<input class="inputbox" type="text" name="tel" id="tel" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->tel); ?>" />
 						</td>
-						-->
+					</tr>
+					<tr>
 						<td class="control-label">
-							<label for="lag"><?php echo JText::_( 'No of Room' ); ?>:</label>
+							<label for="lag">
+								<?php echo JText::_( 'GMAPFP_TEL2' ); ?>:
+							</label>
 						</td>
 						<td class="controls">
-							<select id="tel" class="inputbox " name="tel" size="1" aria-required="true" style="display: none;">
-								<option value="">- Select No of Rooms -</option>
-								<option value="1BHK" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel) == '1BHK'? "selected='selected'":""; ?> > 1BHK</option>
-								<option value="2BHK" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel) == '2BHK'? "selected='selected'":""; ?> > 2BHK</option>
-								<option value="3BHK" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel) == '3BHK'? "selected='selected'":""; ?> > 3BHK</option>
-								<option value="4BHK" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel) == '4BHK'? "selected='selected'":""; ?> > 4BHK</option>
-							</select>
-							<br /><br />
+							<input class="inputbox" type="text" name="tel2" id="tel2" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->tel2); ?>" />
 						</td>
 					</tr>
-				<tr>
-					<!-- <td class="control-label">
-						<label for="lag">
-							<?php echo JText::_( 'GMAPFP_TEL2' ); ?>:
-						</label>
-					</td>
-					<td class="controls">
-						<input class="inputbox" type="text" name="tel2" id="tel2" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->tel2); ?>" />
-					</td> -->
-					<td class="control-label">
-						<label for="lag">
-							<?php echo JText::_( 'Property Type' ); ?>:
-						</label>
-					</td>
-					<td class="controls">
-					<select id="tel2" class="inputbox " name="tel2" size="1" aria-required="true" style="display: none;">
-						<option value="">- Select Property Type -</option>
-						<option value="1" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '1'? "selected='selected'":""; ?> > Apartment </option>
-						<option value="2" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '2'? "selected='selected'":""; ?> > Independent House</option>
-						<option value="3" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '3'? "selected='selected'":""; ?> > Row House</option>
-						<option value="4" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '4'? "selected='selected'":""; ?> > Plot</option>
-						
-						<option value="5" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '5'? "selected='selected'":""; ?> > Villa </option>
-						<option value="6" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '6'? "selected='selected'":""; ?> > Builder Floor</option>
-						<option value="7" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '7'? "selected='selected'":""; ?> > Farm House</option>
-						<option value="8" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '8'? "selected='selected'":""; ?> > Penthouse</option>
-						
-						<option value="9" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '9'? "selected='selected'":""; ?> > Villament </option>
-						<option value="10" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '10'? "selected='selected'":""; ?> > Studio Apartment</option>
-						<option value="11" <?php echo str_replace('"', '&quot;',$this->gmapfp->tel2) == '11'? "selected='selected'":""; ?> > Service Apartmen</option>
-					</select>
-					
-					<br /><br />
-					</td>
-				</tr>
 					<tr>
-						<!-- 
 						<td class="control-label">
 							<label for="lag">
 								<?php echo JText::_( 'GMAPFP_FAX' ); ?>:
@@ -505,18 +454,8 @@ if (empty($_zoom)) {$_zoom = 10;};
 						<td class="controls">
 							<input class="inputbox" type="text" name="fax" id="fax" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->fax); ?>" />
 						</td>
-						-->
-						<td class="control-label">
-							<label for="lag">
-								<?php echo JText::_( 'Built Up Area' ); ?>:
-							</label>
-						</td>
-						<td class="controls">
-							<input class="inputbox" type="text" name="fax" id="fax" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->fax); ?>" /><br /><br />
-						</td>
 					</tr>
 					<tr>
-						<!-- Furnishing State
 						<td class="control-label">
 							<label for="lag">
 								<?php echo JText::_( 'GMAPFP_EMAIL' ); ?>:
@@ -525,27 +464,8 @@ if (empty($_zoom)) {$_zoom = 10;};
 						<td class="controls">
 							<input class="inputbox" type="text" name="email" id="email" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->email); ?>" />
 						</td>
-						-->
-					<td class="control-label">
-						<label for="lag">
-							<?php echo JText::_( 'Furnishing State' ); ?>:
-						</label>
-					</td>
-					<td class="controls">
-						<!-- 
-						<input class="inputbox" type="text" name="email" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->email); ?>" />
-						-->
-						<select id="tel2" class="inputbox " name="email" size="1" aria-required="true" style="display: none;">
-							<option value="">- Select Furnishing State -</option>
-							<option value="completed" <?php echo str_replace('"', '&quot;',$this->gmapfp->email) == '1'? "selected='selected'":""; ?> > Completed </option>
-							<option value="ongoing" <?php echo str_replace('"', '&quot;',$this->gmapfp->email) == '2'? "selected='selected'":""; ?> > Ongoing </option>
-							<option value="upcoming" <?php echo str_replace('"', '&quot;',$this->gmapfp->email) == '3'? "selected='selected'":""; ?> > Upcoming</option>
-						</select>
-						<br /><br />
-					</td>
 					</tr>
 					<tr>
-						<!--
 						<td class="control-label">
 							<label for="lag">
 								<?php echo JText::_( 'GMAPFP_SITE_WEB' ); ?>:
@@ -553,22 +473,6 @@ if (empty($_zoom)) {$_zoom = 10;};
 						</td>
 						<td class="controls">
 							<input class="inputbox" type="text" name="web" id="web" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->web); ?>" />
-						</td>
-						-->
-						<td class="control-label">
-							<label for="lag">
-								<?php echo JText::_( 'Bathroom' ); ?>:
-							</label>
-						</td>
-						<td class="controls">
-							<select id="tel2" class="inputbox " name="web" size="1" aria-required="true" style="display: none;">
-								<option value="">- Select Bathroom -</option>
-								<option value="1" <?php echo str_replace('"', '&quot;',$this->gmapfp->web) == '1'? "selected='selected'":""; ?> > 1 </option>
-								<option value="2" <?php echo str_replace('"', '&quot;',$this->gmapfp->web) == '2'? "selected='selected'":""; ?> > 2 </option>
-								<option value="3" <?php echo str_replace('"', '&quot;',$this->gmapfp->web) == '3'? "selected='selected'":""; ?> > 3</option>
-								<option value="4" <?php echo str_replace('"', '&quot;',$this->gmapfp->web) == '4'? "selected='selected'":""; ?> > 4</option>
-								<option value="5" <?php echo str_replace('"', '&quot;',$this->gmapfp->web) == '5'? "selected='selected'":""; ?> > 5 </option>
-							</select><br /><br />
 						</td>
 					</tr>
 				</table>
@@ -682,8 +586,7 @@ if (empty($_zoom)) {$_zoom = 10;};
 				<tr>
 					<td width="110" class="key">
 						<label for="title">
-						<!-- <?php echo JText::_( 'GMAPFP_HORAIRES_PRIX' ); ?>: -->
-						<?php echo JText::_( 'Summary' ); ?>:
+						<?php echo JText::_( 'GMAPFP_HORAIRES_PRIX' ); ?>:
 						</label>
 					</td>
 					<td valign="top" class="inputbox">

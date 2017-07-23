@@ -45,7 +45,7 @@ if ($this->params->get('show_page_heading')) : ?>
                 <?php echo '&nbsp;'.JText::_( 'JUNPUBLISHED' ).'&nbsp;'; ?>
             </button>
         </td> 
-        <td> 
+        <td style="display:none;"> 
             <button name="copy" class="button" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('<?php echo JText::_( 'GMAPFP_CHOISIR_DANS_LISTE' ).' '.JText::_( 'GMAPFP_COPIER' ); ?>');}else{  submitbutton('copy')}">
                 <span class="icon-32-copy" title="<?php echo JText::_( 'GMAPFP_COPIER' ); ?>"> 
                 </span> 
@@ -77,7 +77,7 @@ if ($this->params->get('show_page_heading')) : ?>
 </div>
 </div>
 <form action=<?php echo JRoute::_('index.php?option=com_gmapfp&view=gestionlieux&controller=gestionlieux&task=view') ?> method="post" name="adminForm" id="adminForm">
-	<table  class="adminform">
+	<table  class="col-lg-12">
 		<tr>
 			<td nowrap="nowrap">
 				<?php echo JText::_( 'GMAPFP_FILTER' ); ?>:
@@ -91,40 +91,58 @@ if ($this->params->get('show_page_heading')) : ?>
 			</td>
 			<td>
 				<?php
-				echo $this->lists['departement'];
-				echo $this->lists['ville'];
-				echo $this->lists['categorie'];
+				//echo $this->lists['departement'];
+				//echo $this->lists['ville'];
+				//echo $this->lists['categorie'];
 				?>
 			</td>
 		</tr>
 	</table>
 <div id="editcell">
-	<table class="table table-striped" id="articleList">
+	<table class="table table-striped" id="articleList" style="width:100%;">
 	<thead>
 		<tr>
-			<th width="20">
-				<?php echo JText::_( 'JGLOBAL_DISPLAY_NUM' ); ?>
+			<th width="20"> No.
+				<?php //echo JText::_( 'JGLOBAL_DISPLAY_NUM' ); ?>
 			</th>
 			<th width="1%" class="nowrap center hidden-phone">
-				<?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'a.ordering', @$this->lists['order_Dir'], @$this->lists['order'], null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
+				<?php //echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'a.ordering', @$this->lists['order_Dir'], @$this->lists['order'], null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
+				<span><i class="icon-menu-2"></i></span>
 			</th>
 			<th width="20">
 				<input type="checkbox" name="toggle" value="" onclick="Joomla.checkAll(this);" />
 			</th>
 			<th width="5%" align="center">
-				<?php echo JHTML::_('grid.sort',   'JPUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<?php //echo JHTML::_('grid.sort',   'JPUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<span><?php echo JText::_('JPUBLISHED'); ?></span>
 			</th>
 			<th  width="40%" nowrap="nowrap">
-				<?php echo JHTML::_('grid.sort',   'GMAPFP_NOM', 'nom', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<?php //echo JHTML::_('grid.sort',   'GMAPFP_NOM', 'nom', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<span><?php echo JText::_('GMAPFP_NOM'); ?></span>
 			</th>
 			<th  width="30%" nowrap="nowrap">
-				<?php echo JHTML::_('grid.sort',   'GMAPFP_VILLE', 'ville', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<?php //echo JHTML::_('grid.sort',   'GMAPFP_VILLE', 'ville', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<span><?php echo JText::_('Address'); ?></span>
+			</th>
+			<th  width="30%" nowrap="nowrap">
+				<?php //echo JHTML::_('grid.sort',   'GMAPFP_VILLE', 'ville', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<span><?php echo JText::_('Villa'); ?></span>
 			</th>
 			<th  width="20%" nowrap="nowrap">
-				<?php echo JHTML::_('grid.sort',   'GMAPFP_DEPARTEMENT', 'departement', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<?php //echo JHTML::_('grid.sort',   'GMAPFP_DEPARTEMENT', 'departement', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<span><?php echo JText::_('State'); ?></span>
 			</th>
 			<th width="1%" nowrap="nowrap">
-				<?php echo JHTML::_('grid.sort',   'JGRID_HEADING_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<?php //echo JHTML::_('grid.sort',   'JGRID_HEADING_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<span><?php echo JText::_('Pay'); ?></span>
+			</th>
+			<th width="1%" nowrap="nowrap">
+				<?php //echo JHTML::_('grid.sort',   'JGRID_HEADING_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<span><?php echo JText::_('Room'); ?></span>
+			</th>
+			<th width="1%" nowrap="nowrap">
+				<?php //echo JHTML::_('grid.sort',   'JGRID_HEADING_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<span><?php echo JText::_('Property Type'); ?></span>
 			</th>
 		</tr>
 	</thead>
@@ -171,6 +189,9 @@ if ($this->params->get('show_page_heading')) : ?>
 				</div>
 			</td>
 			<td>
+				<?php echo $row->adresse.' '.$row->adresse2 ; ?>
+			</td>
+			<td>
 				<?php echo $row->ville; ?>
 			</td>
 			<td>
@@ -178,7 +199,16 @@ if ($this->params->get('show_page_heading')) : ?>
 			</td>
 						</td>
 			<td align="center">
-				<?php echo $row->id; ?>
+				<?php echo $row->pay; ?>
+			</td>
+			<td align="center">
+				<?php echo $row->tel; ?>
+			</td>
+			<td align="center">
+				<?php echo $row->tel2; ?>
+			</td>
+			<td align="center">
+				<?php echo $row->fax; ?>
 			</td>
 		</tr>
 		<?php
@@ -203,3 +233,6 @@ if ($this->params->get('show_page_heading')) : ?>
 <input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
 <?php echo JHTML::_( 'form.token' ); ?>
 <form\>
+<style>
+td {padding: 8px;}
+</style>

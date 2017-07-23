@@ -155,7 +155,7 @@ if ($this->params->get('gmapfp_filtre')==1) :
 				} ?>
             ">
             <div class="gmapfp_liste" >
-		<?php 
+		<?php var_dump()
 			if (!empty($this->perso->intro_detail)) {
 				$article->text=$this->perso->intro_detail; 
 				$results = $dispatcher->trigger('onContentPrepare', array ('com_gmapfp', & $article, & $this->params, 0));
