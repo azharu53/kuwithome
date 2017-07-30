@@ -84,6 +84,14 @@ class GMapFPsModelGMapFP extends JModelLegacy
 			$this->_data->metadesc = null;
 			$this->_data->metakey = null;
 			$this->_data->ordering = 0;			
+			
+			$this->_data->precalltime = null;			
+			$this->_data->propertyon = null;			
+			$this->_data->occupant = null;			
+			$this->_data->occupantother = null;			
+			$this->_data->addfeature = null;			
+			$this->_data->payvariable = 0;			
+				
 		}
 		
 		if (JString::strlen($this->_data->message) > 1) {
@@ -115,7 +123,10 @@ class GMapFPsModelGMapFP extends JModelLegacy
 		$row = $this->getTable('GMapFP', 'GMapFPTable');
 
 		$data = JRequest::get( 'post' );
-
+		
+		$data['occupant'] = implode(",", $data['occupant']);
+		$data['addfeature'] = implode(",", $data['addfeature']);
+		
 		if (!$row->bind($data)) {
 			$this->setError($this->_db->getErrorMsg());
 			return false;

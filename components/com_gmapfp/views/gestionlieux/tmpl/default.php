@@ -109,40 +109,44 @@ if ($this->params->get('show_page_heading')) : ?>
 				<?php //echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'a.ordering', @$this->lists['order_Dir'], @$this->lists['order'], null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
 				<span><i class="icon-menu-2"></i></span>
 			</th>
-			<th width="20">
+			<th width="1%">
 				<input type="checkbox" name="toggle" value="" onclick="Joomla.checkAll(this);" />
 			</th>
 			<th width="5%" align="center">
 				<?php //echo JHTML::_('grid.sort',   'JPUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 				<span><?php echo JText::_('JPUBLISHED'); ?></span>
 			</th>
-			<th  width="40%" nowrap="nowrap">
+			<th  width="14%" nowrap="nowrap">
 				<?php //echo JHTML::_('grid.sort',   'GMAPFP_NOM', 'nom', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 				<span><?php echo JText::_('GMAPFP_NOM'); ?></span>
 			</th>
-			<th  width="30%" nowrap="nowrap">
+			<th width="20%"  nowrap="nowrap">
 				<?php //echo JHTML::_('grid.sort',   'GMAPFP_VILLE', 'ville', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 				<span><?php echo JText::_('Address'); ?></span>
 			</th>
-			<th  width="30%" nowrap="nowrap">
+			<th  width="10%" nowrap="nowrap">
 				<?php //echo JHTML::_('grid.sort',   'GMAPFP_VILLE', 'ville', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 				<span><?php echo JText::_('Villa'); ?></span>
 			</th>
-			<th  width="20%" nowrap="nowrap">
+			<th width="10%"  nowrap="nowrap">
 				<?php //echo JHTML::_('grid.sort',   'GMAPFP_DEPARTEMENT', 'departement', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 				<span><?php echo JText::_('State'); ?></span>
 			</th>
-			<th width="1%" nowrap="nowrap">
+			<th width="10%" nowrap="nowrap">
 				<?php //echo JHTML::_('grid.sort',   'JGRID_HEADING_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 				<span><?php echo JText::_('Pay'); ?></span>
 			</th>
-			<th width="1%" nowrap="nowrap">
+			<th width="10%" nowrap="nowrap">
 				<?php //echo JHTML::_('grid.sort',   'JGRID_HEADING_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
-				<span><?php echo JText::_('Room'); ?></span>
+				<span> <?php echo JText::_('BHK'); ?> </span>
 			</th>
-			<th width="1%" nowrap="nowrap">
+			<th width="10%" nowrap="nowrap">
 				<?php //echo JHTML::_('grid.sort',   'JGRID_HEADING_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 				<span><?php echo JText::_('Property Type'); ?></span>
+			</th>
+			<th width="10%" nowrap="nowrap">
+				<?php //echo JHTML::_('grid.sort',   'JGRID_HEADING_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+				<span><?php echo JText::_('Built Up Area'); ?></span>
 			</th>
 		</tr>
 	</thead>

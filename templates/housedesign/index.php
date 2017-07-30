@@ -184,5 +184,21 @@
 <div id="designer">Design by <a href="http://www.joomlasaver.com" target="_blank" title="www.joomlasaver.com">JoomlaSaver</a></div>
 </div>
 </div>
+<?php $user = JFactory::getUser(); ?>
+<script> 
+jQuery(".addwishlist").click(function(){
+    jQuery.ajax({url: "index.php?option=com_wishlist&task=ajaxsave&component=tmpl", data: {uid:"<?php echo $user->id; ?>", pid:this.name}, success: function(result){
+    }});
+	jQuery(this).html('Remove wishlist');
+			 
+});
+
+jQuery(".rmovewishlist").click(function(){
+    jQuery.ajax({url: "index.php?option=com_wishlist&task=ajaxdelete&component=tmpl", data: {uid:"<?php echo $user->id; ?>", pid:this.name}, success: function(result){
+
+    }});
+	 jQuery(this).html('Add wishlist'); 
+});
+</script>
 </body>
 </html>

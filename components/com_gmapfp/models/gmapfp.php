@@ -209,26 +209,44 @@ class GMapFPsModelGMapFP extends JModelLegacy
 		
 		/**** Change 07232017 Start **/
 		if (count($_POST) > 0) {
-				if(!empty($_POST['address']) || $_POST['address'] != ''){
+				if(isset($_POST['address']) && $_POST['address'] != ''){
 					$wheres[] = ' (adresse  like "%'.$_POST['address'].'%" OR adresse2 like "%'.$_POST['address'].'%"'.' OR ville  like "%'.$_POST['address'].'%" '
 					.' OR departement  like "%'.$_POST['address'].'%" '.' OR codepostal  like "%'.$_POST['address'].'%" )';
 				}
 				
-				if(!empty($_POST['propertytype']) || $_POST['propertytype'] != ''){
-					$wheres[] = ' a.tel2  = "'.$_POST['propertytype'].'" ';
-									}
-				
-				if((!empty($_POST['budgetmin']) || $_POST['budgetmin'] != '' ) && (!empty($_POST['budgetmax']) || $_POST['budgetmax'] != '' )){
-					$wheres[] = '( a.pay   <= "'.$_POST['budgetmax'].'" AND a.pay  >= "'.$_POST['budgetmin'].'" )';
-				 
+				if(isset($_POST['propertytype']) && $_POST['propertytype'] != ''){
+					$wheres[] = ' a.tel2  = '.$db->Quote($_POST['propertytype']);
 				}
 				
-				if(!empty($_POST['propertytype']) || $_POST['propertytype'] != ''){
-					//$wheres[] = ' a.adresse  like "%'.$_POST['propertytype'].'%" ';
-					//$wheres[] = ' a.adresse2 like "%'.$_POST['propertytype'].'%" ';
+				if(isset($_POST['budgetmin']) && $_POST['budgetmin'] != '' ) {
+					$wheres[] = ' a.pay  >= '.$db->Quote($_POST['budgetmin']);
+				}
+				
+				if(isset($_POST['budgetmax']) && $_POST['budgetmax'] != '' ){
+					$wheres[] = ' a.pay   <= '.$db->Quote($_POST['budgetmax']);
+				}
+				
+				if(isset($_POST['tel']) && $_POST['tel'] != ''){
+					$wheres[] = ' a.tel  = '.$db->Quote($_POST['tel']);
+				}
+				
+				if(isset($_POST['tel2']) && $_POST['tel2'] != ''){
+					$wheres[] = ' a.tel2  = '.$db->Quote($_POST['tel2']);
+				}
+				
+				if(isset($_POST['email']) && $_POST['email'] != ''){
+					$wheres[] = ' a.email  = '.$db->Quote($_POST['email']);
+				}
+				
+				if(isset($_POST['postedby']) && $_POST['postedby'] != ''){
+					$wheres[] = ' a.userid  = '.$db->Quote($_POST['postedby']);
+				}
+				
+				if(isset($_POST['web']) && $_POST['web'] != ''){
+					$wheres[] = ' a.web  = '.$db->Quote($_POST['web']);
 				}
 			}
-		 
+		  
 		
 		/**** Change 07232017 End **/
 				
@@ -243,7 +261,7 @@ class GMapFPsModelGMapFP extends JModelLegacy
 		$query->order($order);
 		$db->setQuery($query);
 
-//die(print_r($query));
+		//die(print_r($query));
         return $db;
     }
 

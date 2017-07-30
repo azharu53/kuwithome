@@ -102,7 +102,14 @@ class GMapFPsModelEditLieux extends JModelLegacy
 			$this->_data->checked_out = null;
 			$this->_data->metadesc = null;
 			$this->_data->metakey = null;
-			$this->_data->ordering = 0;			
+			$this->_data->ordering = 0;		
+
+			$this->_data->precalltime = null;			
+			$this->_data->propertyon = null;			
+			$this->_data->occupant = null;			
+			$this->_data->occupantother = null;			
+			$this->_data->addfeature = null;			
+			$this->_data->payvariable = 0;		
 		}
 		
 		if (JString::strlen($this->_data->message) > 1) {
@@ -161,7 +168,9 @@ class GMapFPsModelEditLieux extends JModelLegacy
 		// Prepare the content for saving to the database
 		$this->saveGMapfpPrep( $row );
 
-
+        $data['occupant'] = implode(",", $data['occupant']);
+		$data['addfeature'] = implode(",", $data['addfeature']);
+		
 		// Bind the form fields to the table
 		if (!$row->bind($data)) {
 			$this->setError($this->_db->getErrorMsg());

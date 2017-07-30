@@ -808,13 +808,42 @@ input.button, button, input.btn {  padding: 5px !important;}
 #gzoom {display:none;}
 .row{clear:both; width:100%;}
 .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {float:left;}
+.col-lg-1 { width:8.33%;}
+.col-lg-2 { width:16.66%;}
 .col-lg-3 { width:25%;}
 .col-lg-4 { width:33.33%;}
+.col-lg-5 { width:20%;}
 .col-lg-6 { width:50%;}
+.col-lg-8 { width:66.66%;}
 .col-lg-9 { width:75%;}
 .col-lg-12 { width:100%;}
 .gmapfp_liste .sidebar { text-align:center; background: #fff none repeat scroll 0 0; border: 1px solid #f68121; color: #333; display: block; font-size: 14px; margin-top: 15px; padding: 5px 5px; }
 .btn-sm { display: block; font-size: 14px; padding: 8px 11px !important; width: 100%;  border-right: 1px solid #f68121 !important;   box-shadow: none; margin-top:5px;}
 .heading-list { font-size: 16px; }
+.gmapfp .gmapfpform  { width: 600px}
 hr {  border-bottom: 1px solid #ccc; }
 
+ .formidbudget	{border: 0 none;  height: 40px; padding: 2px 10px 2px 15px; text-align: left; transition: max-height 275ms ease 0s; width: 100%; 
+-moz-user-select: none; cursor: pointer; display: inline-block; font-weight: 400; line-height: 1.42857; touch-action: manipulation; vertical-align: middle; font-size: 18px;  border: 1px solid transparent; background-color: #fff; color: #333;}
+.bannerText1 select, .bannerText1 input {  margin: 3px 2px; padding: 5px; border-radius:5px;  }
+.bannerText1 input { padding: 5px 10px; height: 27px;}
+.bannerText1 select{ width: 100%; height: 40px;}
+.bannerText1 button {  margin: 3px 2px; border-radius:5px;}
+.bannerText1 .button_text {padding: 8px 25px !important; height: 40px;}
+.icon-downarrow-01::before { content: "";}
+ 
+.gmapfp select, .gmapfp input {  margin: 3px 2px; padding: 5px; border-radius:5px;   }
+.gmapfp input { padding: 2px 10px; height: 22px;  width: 90%;}
+.gmapfp select{ width: 100%; height: 30px;}
+.gmapfp button  {padding: 4px 15px !important; height: 30px;}
+.gmapfpform input,.gmapfpform select,.gmapfpform button, .gmapfpform textarea{font-size: 14px !important;}
+.registration button {padding: 4px 15px !important; height: 42px;}
+a.btn { padding: 4px 15px !important;}
+
+.dropbtn { border: none; cursor: pointer;}
+.dropdown-content { display: none; position: absolute; background-color: #f9f9f9; min-width: 160px;  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;}
+.dropdown-content a { color: black; padding: 5px 10px; text-decoration: none; display: block;}
+.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown:hover .dropdown-content { display: block;}
+.dropdown:hover .sclogin >a  { background-color: #3e8e41;}
+#body-inner {min-height: 600px;}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="ordering"/>
+    <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+      <option value="1">JPUBLISHED</option>
+      <option value="0">JUNPUBLISHED</option>
+      <option value="2">JARCHIVED</option>
+      <option value="-2">JTRASHED</option>
+    </field>
+    <field name="created_by" type="createdby" default="0" label="COM_BANNER_FORM_LBL_IMAGES_CREATED_BY" description="COM_BANNER_FORM_DESC_IMAGES_CREATED_BY" hidden="true" hint="COM_BANNER_FORM_LBL_IMAGES_CREATED_BY"/>
+    <field name="modified_by" type="modifiedby" default="0" label="COM_BANNER_FORM_LBL_IMAGES_MODIFIED_BY" description="COM_BANNER_FORM_DESC_IMAGES_MODIFIED_BY" hidden="true" hint="COM_BANNER_FORM_LBL_IMAGES_MODIFIED_BY"/>
+    <field name="image_name" type="text" filter="safehtml" label="COM_BANNER_FORM_LBL_IMAGES_IMAGE_NAME" description="COM_BANNER_FORM_DESC_IMAGES_IMAGE_NAME" hint="COM_BANNER_FORM_LBL_IMAGES_IMAGE_NAME"/>
+    <field name="image_path" type="text" filter="safehtml" label="COM_BANNER_FORM_LBL_IMAGES_IMAGE_PATH" description="COM_BANNER_FORM_DESC_IMAGES_IMAGE_PATH" hint="COM_BANNER_FORM_LBL_IMAGES_IMAGE_PATH"/>
+    <field name="text_banner" type="editor" editor="|" filter="JComponentHelper::filterText" label="COM_BANNER_FORM_LBL_IMAGES_TEXT_BANNER" description="COM_BANNER_FORM_DESC_IMAGES_TEXT_BANNER" hint="COM_BANNER_FORM_LBL_IMAGES_TEXT_BANNER"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>

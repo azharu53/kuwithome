@@ -466,9 +466,98 @@ if ($this->params->get('show_page_heading')) : ?>
 							<input class="inputbox" type="text" name="departement" id="departement" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->departement); ?>" onchange="UpdateAddress()"/>
 						</td>
 						<td>
-							<input class="inputbox" type="text" name="pay" id="pay" size="60" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->pay); ?>" onchange="UpdateAddress()"/>
+							<input class="inputbox" type="text" name="pay" id="pay" size="30" maxlength="200" value="<?php echo str_replace('"', '&quot;',$this->items->pay); ?>" onchange="UpdateAddress()"/>
+							
+							<select id="tel" class="inputbox " name="payvariable" size="1" >
+								<option value="1" <?php echo str_replace('"', '&quot;',$this->items->payvariable) == '1'? "selected='selected'":""; ?> > Fixed Price </option>
+								<option value="0" <?php echo str_replace('"', '&quot;',$this->items->payvariable) == '0'? "selected='selected'":""; ?> > Negociable Price </option>
+							</select>
 						</td>
 					</tr>
+					
+					
+					<tr <?php if (@$this->params->get('gmapfp_departement_view')){echo 'style="display: none; visibility: hidden;"';}?>>
+						<td style="width:100px;" class="key">
+							<label for="lag">
+								<?php echo JText::_( 'Meeting Time' ); ?>
+							</label>
+						</td>
+						<td style="width:100px;" class="key">
+							<label for="lag">
+								<?php echo JText::_( 'Property on' ); ?>
+							</label>
+						</td>
+						
+					</tr>
+					<tr <?php if (@$this->params->get('gmapfp_pays_view')){echo 'style="display: none; visibility: hidden;"';}?>>
+						<td>
+							<select id="precalltime" class="inputbox " name="precalltime" size="1" >
+								<option value="">- Select Meeting Time -</option>
+								<option value="6a" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '6a'? "selected='selected'":""; ?> > 6AM</option>
+								<option value="7a" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '7a'? "selected='selected'":""; ?> > 7AM</option>
+								<option value="8a" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '8a'? "selected='selected'":""; ?> > 8AM</option>
+								<option value="9a" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '9a'? "selected='selected'":""; ?> > 9AM</option>
+								<option value="10a" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '10a'? "selected='selected'":""; ?> > 10AM</option>
+								<option value="11a" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '11a'? "selected='selected'":""; ?> > 11AM</option>
+								<option value="12a" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '12a'? "selected='selected'":""; ?> > 12AM</option>
+								<option value="1p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '1p'? "selected='selected'":""; ?> > 1PM</option>
+								<option value="2p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '2p'? "selected='selected'":""; ?> > 2PM</option>
+								<option value="3p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '3p'? "selected='selected'":""; ?> > 3PM</option>
+								<option value="4p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '4p'? "selected='selected'":""; ?> > 4PM</option>
+								<option value="5p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '5p'? "selected='selected'":""; ?> > 5PM</option>
+								<option value="6p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '6p'? "selected='selected'":""; ?> > 6PM</option>
+								<option value="7p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '7p'? "selected='selected'":""; ?> > 7PM</option>
+								<option value="8p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '8p'? "selected='selected'":""; ?> > 8PM</option>
+								<option value="9p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '9p'? "selected='selected'":""; ?> > 9PM</option>
+								<option value="10p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '10p'? "selected='selected'":""; ?> > 10PM</option>
+								<option value="11p" <?php echo str_replace('"', '&quot;',$this->items->precalltime) == '11p'? "selected='selected'":""; ?> > 11PM</option>
+							</select>
+						</td>
+						<td>
+							<select id="propertyon" class="inputbox " name="propertyon" size="1" >
+								<option value="gf" <?php echo str_replace('"', '&quot;',$this->items->propertyon) == 'gf'? "selected='selected'":""; ?> > Ground Floor </option>
+								<option value="1f" <?php echo str_replace('"', '&quot;',$this->items->propertyon) == '1f'? "selected='selected'":""; ?> > 1st Floor </option>
+								<option value="2f" <?php echo str_replace('"', '&quot;',$this->items->propertyon) == '2f'? "selected='selected'":""; ?> > 2st Floor </option>
+								<option value="3f" <?php echo str_replace('"', '&quot;',$this->items->propertyon) == '3f'? "selected='selected'":""; ?> > 3st Floor </option>
+							</select>
+						</td>
+					</tr>
+					
+					
+					
+					<tr <?php if (@$this->params->get('gmapfp_tel_view')){echo 'style="display: none; visibility: hidden;"';}?>>
+						<td style="width:100px;" class="key">
+							<label for="lag">
+								<?php echo JText::_( 'Feature' ); ?>
+							</label>
+						</td>
+						<td style="width:100px;" class="key">
+							<label for="lag">
+								<?php echo JText::_( 'Occupant get access to below' ); ?>
+							</label>
+						</td>
+						
+					</tr>
+					<tr <?php if (@$this->params->get('gmapfp_tel2_view')){echo 'style="display: none; visibility: hidden;"';}?>>
+					<td><?php $addfeature = explode(",", $this->items->addfeature); ?>
+						<input type="checkbox" name="addfeature[]" value="Gym" <?php echo in_array('Gym',$addfeature) ? "checked'":""; ?> > Gym 
+						<input type="checkbox" name="addfeature[]" value="Swimming Pool" <?php echo in_array('Swimming Pool',$addfeature) ? "checked'":""; ?> > Swimming Pool 
+						<input type="checkbox" name="addfeature[]" value="Maintaince staff" <?php echo in_array('Maintaince staff',$addfeature) ? "checked'":""; ?> > Maintaince staff 
+					</td>
+					<td><?php $occupant = explode(",", $this->items->occupant); ?>
+					 
+						<input type="checkbox" name="occupant[]" value="Kitchen" <?php echo in_array('Kitchen',$occupant) ? "checked":""; ?> > Kitchen 
+						<input type="checkbox" name="occupant[]" value="Study Room" <?php echo in_array('Study Room',$occupant)? "checked":""; ?> > Study Room 
+						<input type="checkbox" name="occupant[]" value="Common Washroom" <?php echo in_array('Common Washroom',$occupant) ? "checked":""; ?> > Common Washroom 
+						<input type="checkbox" name="occupant[]" value="Dry balcony" <?php echo in_array('Dry balcony',$occupant) ? "checked":""; ?> > Dry balcony 
+						<input type="checkbox" name="occupant[]" value="AttachedSeperate washroom" <?php echo in_array('AttachedSeperate washroom',$occupant) ? "checked":""; ?> > Attached/Seperate washroom 
+						<input type="checkbox" name="occupant[]" value="Gallery" <?php echo in_array('Common Washroom',$occupant) ? "checked":""; ?> > Gallery 
+						<input type="checkbox" name="occupant[]" value="Common Living Room" <?php echo in_array('Common Living Room',$occupant) ? "checked":""; ?> > Common Living Room 
+					</td>
+					</tr>
+					
+					
+					
 					<tr <?php if (@$this->params->get('gmapfp_tel_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="width:100px;" class="key">
 							<label for="lag">

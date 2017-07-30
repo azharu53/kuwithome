@@ -433,7 +433,100 @@ if (empty($_zoom)) {$_zoom = 10;};
 						</td>
 						<td class="controls">
 							<input class="inputbox" type="text" name="pay" id="pay" size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->pay); ?>" />
+													
+						
+							<select id="payvariable" class="inputbox " name="payvariable" size="1" aria-required="true" style="display: none;">
+								<option value="1" <?php echo str_replace('"', '&quot;',$this->gmapfp->payvariable) == '1'? "selected='selected'":""; ?> > Fixed Price </option>
+								<option value="0" <?php echo str_replace('"', '&quot;',$this->gmapfp->payvariable) == '0'? "selected='selected'":""; ?> > Negociable Price </option>
+								</select>
 							<br /><br />
+						</td>
+						</tr>
+						<tr>
+						<td class="control-label">
+							<label for="lag">
+								<?php echo JText::_( 'Meeting Time' ); ?>:
+							</label>
+						</td>
+						<td class="controls">
+							<select id="precalltime" class="inputbox " name="precalltime" size="1" aria-required="true" style="display: none;">
+								<option value="">- Select Meeting Time -</option>
+								<option value="6a" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '6a'? "selected='selected'":""; ?> > 6AM</option>
+								<option value="7a" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '7a'? "selected='selected'":""; ?> > 7AM</option>
+								<option value="8a" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '8a'? "selected='selected'":""; ?> > 8AM</option>
+								<option value="9a" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '9a'? "selected='selected'":""; ?> > 9AM</option>
+								<option value="10a" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '10a'? "selected='selected'":""; ?> > 10AM</option>
+								<option value="11a" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '11a'? "selected='selected'":""; ?> > 11AM</option>
+								<option value="12a" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '12a'? "selected='selected'":""; ?> > 12AM</option>
+								<option value="1p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '1p'? "selected='selected'":""; ?> > 1PM</option>
+								<option value="2p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '2p'? "selected='selected'":""; ?> > 2PM</option>
+								<option value="3p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '3p'? "selected='selected'":""; ?> > 3PM</option>
+								<option value="4p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '4p'? "selected='selected'":""; ?> > 4PM</option>
+								<option value="5p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '5p'? "selected='selected'":""; ?> > 5PM</option>
+								<option value="6p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '6p'? "selected='selected'":""; ?> > 6PM</option>
+								<option value="7p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '7p'? "selected='selected'":""; ?> > 7PM</option>
+								<option value="8p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '8p'? "selected='selected'":""; ?> > 8PM</option>
+								<option value="9p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '9p'? "selected='selected'":""; ?> > 9PM</option>
+								<option value="10p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '10p'? "selected='selected'":""; ?> > 10PM</option>
+								<option value="11p" <?php echo str_replace('"', '&quot;',$this->gmapfp->precalltime) == '11p'? "selected='selected'":""; ?> > 11PM</option>
+							</select>
+							<br /><br />
+						</td>
+					</tr>
+					<tr>
+					<td class="control-label">
+							<label for="lag"><?php echo JText::_( 'Property on' ); ?>:</label>
+						</td>
+						<td class="controls">
+							<select id="propertyon" class="inputbox " name="propertyon" size="1" aria-required="true" style="display: none;">
+								<option value="gf" <?php echo str_replace('"', '&quot;',$this->gmapfp->propertyon) == 'gf'? "selected='selected'":""; ?> > Ground Floor </option>
+								<option value="1f" <?php echo str_replace('"', '&quot;',$this->gmapfp->propertyon) == '1f'? "selected='selected'":""; ?> > 1st Floor </option>
+								<option value="2f" <?php echo str_replace('"', '&quot;',$this->gmapfp->propertyon) == '2f'? "selected='selected'":""; ?> > 2st Floor </option>
+								<option value="3f" <?php echo str_replace('"', '&quot;',$this->gmapfp->propertyon) == '3f'? "selected='selected'":""; ?> > 3st Floor </option>
+							</select>
+							<br /><br />
+						</td>
+					</tr>
+					<tr>
+					<td class="control-label">
+							<label for="lag"><?php echo JText::_( 'Feature' ); ?>:</label>
+						</td>
+						<td class="controls">
+							<?php $addfeature = explode(",", $this->gmapfp->addfeature); ?>
+							<select id="addfeature" class="inputbox " name="addfeature[]" size="1" aria-required="true" style="display: none;" multiple>
+								 
+								<option value="Gym" <?php echo in_array('Gym',$addfeature) ? "selected='selected'":""; ?> > Gym </option>
+								<option value="Swimming Pool" <?php echo in_array('Swimming Pool',$addfeature) ? "selected='selected'":""; ?> > Swimming Pool </option>
+								<option value="Maintaince staff" <?php echo in_array('Maintaince staff',$addfeature) ? "selected='selected'":""; ?> > Maintaince staff </option>
+							</select>
+							<br /><br />
+						</td>
+					</tr>
+					<tr>
+						<td class="control-label">
+							<label for="lag"><?php echo JText::_( 'Occupant get access to below' ); ?>:</label>
+						</td>
+						<td class="controls">
+							<?php $occupant = explode(",", $this->gmapfp->occupant); ?>
+							<select id="occupant" class="inputbox " name="occupant[]" size="1" style="display: none;" multiple >
+							 
+								<option value="Kitchen" <?php echo in_array('Kitchen',$occupant) ? "selected='selected'":""; ?> > Kitchen </option>
+								<option value="Study Room" <?php echo in_array('Study Room',$occupant)? "selected='selected'":""; ?> > Study Room </option>
+								<option value="Common Washroom" <?php echo in_array('Common Washroom',$occupant) ? "selected='selected'":""; ?> > Common Washroom </option>
+								<option value="Dry balcony" <?php echo in_array('Dry balcony',$occupant) ? "selected='selected'":""; ?> > Dry balcony </option>
+								<option value="AttachedSeperate washroom" <?php echo in_array('AttachedSeperate washroom',$occupant) ? "selected='selected'":""; ?> > Attached/Seperate washroom </option>
+								<option value="Gallery" <?php echo in_array('Common Washroom',$occupant) ? "selected='selected'":""; ?> > Gallery </option>
+								<option value="Common Living Room" <?php echo in_array('Common Living Room',$occupant) ? "selected='selected'":""; ?> > Common Living Room </option>
+							</select>
+							<br /><br />
+						</td>
+					</tr>
+					<tr>
+						<td class="control-label">
+							<label for="lag"><?php echo JText::_( 'Others Please Specify' ); ?>:</label>
+						</td>
+						<td class="controls">
+							<input class="inputbox" type="text" name="occupantother" id="occupantother"  size="60" value="<?php echo str_replace('"', '&quot;',$this->gmapfp->occupantother); ?>" />
 						</td>
 					</tr>
 					<tr>

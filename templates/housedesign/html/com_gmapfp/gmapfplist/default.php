@@ -17,6 +17,21 @@ JPluginHelper::importPlugin('content');
 $mainframe = JFactory::getApplication();
 $document   = JFactory::getDocument();
 
+$user = JFactory::getUser();
+$uid=$user->id;
+$property_ids =array();
+$db = JFactory::getDbo();
+if($uid > 0){
+		
+		$query ="SELECT property_id FROM #__wishlist WHERE userid ='".$uid."'";
+		$db->setQuery($query);
+		$property_ids =$db->loadColumn();	
+ }
+ 
+		$query ="SELECT a.userid,u.username  FROM #__gmapfp as a LEFT JOIN  #__users as u on a.userid =u.id WHERE a.published = 1";
+		$db->setQuery($query);
+		$postedby =$db->loadObjectList();
+
 $active = $mainframe->getMenu()->getActive();
 
 if ($active->params->get('menu-meta_description'))
@@ -93,40 +108,8 @@ if ($this->params->get('gmapfp_filtre')==1) :
 	};
 	$itemid = JRequest::getVar('Itemid', 0, '', 'int');
 	$perso = JRequest::getVar('id_perso', 0, '', 'int');
-	
-	echo '<form action="'.JRoute::_('index.php?option=com_gmapfp&view=gmapfplist'.$layout_str.'&id_perso='.$perso.'&Itemid='.$itemid).'" method="post" name="adminForm">';
-	?><div class="table-responsive">
-  		<table  class="gmapfpform table">
-			<tr>
-				<td width="60%">
-					<?php echo JText::_( 'GMAPFP_FILTER' ); ?>:
-					<input type="text" size="20" name="search_gmapfp" id="search_gmapfp" value="<?php echo $this->lists['search_gmapfp'];?>" class="text" onchange="document.adminForm.submit();"/>
-					<button onclick="this.form.submit();"><?php echo JText::_( 'GMAPFP_GO_FILTER' ); ?></button>
-					<button onclick="
-						document.getElementById('search_gmapfp').value='';
-						<?php if (@$this->lists['ville']) {?>document.adminForm.filtreville.value='-- <?php echo JText::_( 'GMAPFP_VILLE_FILTRE' ) ?> --'; <?php };?>
-						<?php if (@$this->lists['departement']) {?>document.adminForm.filtredepartement.value='-- <?php echo JText::_( 'GMAPFP_DEPARTEMENT_FILTRE' ) ?> --'; <?php };?>
-						<?php if (@$this->lists['pays']) {?>document.adminForm.filtrepays.value='-- <?php echo JText::_( 'GMAPFP_PAYS_FILTRE' ) ?> --'; <?php };?>
-						<?php if (@$this->lists['categorie']) {?>document.adminForm.filtrecategorie.value='-- <?php echo JText::_( 'GMAPFP_CATEGORIE_FILTRE' ) ?> --'; <?php };?>
-						this.form.submit();
-					"><?php echo JText::_( 'GMAPFP_RESET' ); ?>
-					</button>
-				</td>
-				<td width="40%">
-					<?php
-					if (@$this->lists['ville']) {echo $this->lists['ville'].'<br />';};
-					if (@$this->lists['departement']) {echo $this->lists['departement'].'<br />';};
-					if (@$this->lists['pays']) {echo $this->lists['pays'].'<br />';};
-					if (@$this->lists['categorie']) {echo $this->lists['categorie'].'<br />';};
-					?>
-				</td>
-			</tr>
-		</table>
-	   </div>
-	</form>
-<?php endif; 
-//fin affichage des filtres
-?>
+	?> 
+
 <div class="table-responsive"> <?php //echo $map_px; ?>
 <table class="table blog<?php echo $this->params->get('pageclass_sfx'); ?>" cellpadding="0" cellspacing="0" width="100%">
     <?php
@@ -149,7 +132,122 @@ if ($this->params->get('gmapfp_filtre')==1) :
         //listing
 		?>
         <td style="vertical-align: top;" width="100%" >
-			<div class="col-lg-6 class50" style="float:left;">
+		    <div class="col-lg-6 class50" style="float:left;">
+			
+			<?php
+			echo '<form action="'.JRoute::_('index.php?option=com_gmapfp&view=gmapfplist'.$layout_str.'&id_perso='.$perso.'&Itemid='.$itemid).'" method="post" name="adminForm">';
+			?><div class="table-responsive">
+				<table  class="gmapfpform table" >
+					<tr>
+						<td >
+							<?php //echo JText::_( 'GMAPFP_FILTER' ); ?>
+							<div class="row">
+							<div class="col-lg-3">
+							<?php if (@$this->lists['categorie']) {echo $this->lists['categorie'];}; ?>
+							</div>
+							<div class="col-lg-6">
+							<input type="text" size="20" name="search_gmapfp" id="search_gmapfp" value="<?php echo $this->lists['search_gmapfp'];?>" class="text" onchange="document.adminForm.submit();"/>
+							</div>
+							<div class="col-lg-3">
+							<button onclick="this.form.submit();"><?php echo JText::_( 'GMAPFP_GO_FILTER' ); ?></button>
+							
+							<button onclick="
+								document.getElementById('search_gmapfp').value='';
+								<?php if (@$this->lists['ville']) {?>document.adminForm.filtreville.value='-- <?php echo JText::_( 'GMAPFP_VILLE_FILTRE' ) ?> --'; <?php };?>
+								<?php if (@$this->lists['departement']) {?>document.adminForm.filtredepartement.value='-- <?php echo JText::_( 'GMAPFP_DEPARTEMENT_FILTRE' ) ?> --'; <?php };?>
+								<?php if (@$this->lists['pays']) {?>document.adminForm.filtrepays.value='-- <?php echo JText::_( 'GMAPFP_PAYS_FILTRE' ) ?> --'; <?php };?>
+								<?php if (@$this->lists['categorie']) {?>document.adminForm.filtrecategorie.value='-- <?php echo JText::_( 'GMAPFP_CATEGORIE_FILTRE' ) ?> --'; <?php };?>
+								this.form.submit();
+							"><?php echo JText::_( 'GMAPFP_RESET' ); ?>
+							</button>
+							</div>
+							</div>
+							 
+							<?php
+							//if (@$this->lists['ville']) {echo $this->lists['ville'].'<br />';};
+							//if (@$this->lists['departement']) {echo $this->lists['departement'].'<br />';};
+							//if (@$this->lists['pays']) {echo $this->lists['pays'].'<br />';};
+							?>
+							<div class="row">
+							<div class="col-lg-2">
+							<select id="tel" class="inputbox " name="tel" size="1" onchange="this.form.submit();" style="width:100%" >
+								<option value=""> BHK </option>
+								<option value="1BHK" <?php echo JRequest::getVar('tel') == '1BHK'? "selected='selected'":""; ?> > 1BHK</option>
+								<option value="2BHK" <?php echo JRequest::getVar('tel') == '2BHK'? "selected='selected'":""; ?> > 2BHK</option>
+								<option value="3BHK" <?php echo JRequest::getVar('tel') == '3BHK'? "selected='selected'":""; ?> > 3BHK</option>
+								<option value="4BHK" <?php echo JRequest::getVar('tel') == '4BHK'? "selected='selected'":""; ?> > 4BHK</option>
+							</select>
+							</div>
+							<div class="col-lg-4">
+							<button class="formidbudget" type="button" onclick="formidbudget();" > Budget 	</button>
+							<div id="formidbudget" style="display:none; position:relative; z-index:99999;" >
+							<div style="position:absolute;" >
+							<input name="budgetmin" class="element text medium" type="number" style="width:32%" value="" placeholder="MIN" min="1" /> 
+							<input name="budgetmax" class="element text medium" type="number" style="width:32%"  value="" placeholder="MAX" min="1"/>
+							</div>
+							</div>
+							</div>
+							<div class="col-lg-3">
+							
+							<select id="tel2" class="inputbox " name="tel2" size="1" onchange="this.form.submit();" style="width:100%" >
+								<option value="1" <?php echo JRequest::getVar('tel2') == '1'? "selected='selected'":""; ?> > Apartment </option>
+								<option value="2" <?php echo JRequest::getVar('tel2') == '2'? "selected='selected'":""; ?> > Independent House</option>
+								<option value="3" <?php echo JRequest::getVar('tel2') == '3'? "selected='selected'":""; ?> > Row House</option>
+								<option value="4" <?php echo JRequest::getVar('tel2') == '4'? "selected='selected'":""; ?> > Plot</option>
+								
+								<option value="5" <?php echo JRequest::getVar('tel2') == '5'? "selected='selected'":""; ?> > Villa </option>
+								<option value="6" <?php echo JRequest::getVar('tel2') == '6'? "selected='selected'":""; ?> > Builder Floor</option>
+								<option value="7" <?php echo JRequest::getVar('tel2') == '7'? "selected='selected'":""; ?> > Farm House</option>
+								<option value="8" <?php echo JRequest::getVar('tel2') == '8'? "selected='selected'":""; ?> > Penthouse</option>
+								
+								<option value="9" <?php echo JRequest::getVar('tel2') == '9'? "selected='selected'":""; ?> > Villament </option>
+								<option value="10" <?php echo JRequest::getVar('tel2') == '10'? "selected='selected'":""; ?> > Studio Apartment</option>
+								<option value="11" <?php echo JRequest::getVar('tel2') == '11'? "selected='selected'":""; ?> > Service Apartmen</option>
+							</select> 
+							</div>
+							<div class="col-lg-3">
+							<select id="email" class="inputbox " name="email" size="1" onchange="this.form.submit();" style="width:100%" >
+								<option value=""> Furnishing State </option>
+								<option value="completed" <?php echo JRequest::getVar('email') == '1'? "selected='selected'":""; ?> > Completed </option>
+								<option value="ongoing" <?php echo JRequest::getVar('email') == '2'? "selected='selected'":""; ?> > Ongoing </option>
+								<option value="upcoming" <?php echo JRequest::getVar('email') == '3'? "selected='selected'":""; ?> > Upcoming</option>
+							</select>
+							</div>
+							
+							</div>
+							<div class="row">
+							<div class="col-lg-3">
+							<select id="email" class="inputbox " name="postedby" size="1" onchange="this.form.submit();" >
+								<option value=""> Posted By </option>
+								<?php foreach($postedby as $u){ ?>
+									<option value="<?php echo $u->userid; ?>" <?php echo JRequest::getVar('postedby') == '1'? "selected='selected'":""; ?> > <?php echo $u->username; ?> </option>
+									
+								<?php } ?>
+							</select>
+							</div>
+							<div class="col-lg-3">
+							<select id="web" class="inputbox " name="web" size="1" onchange="this.form.submit();">
+										<option value=""> Bathroom </option>
+										<option value="1" <?php echo JRequest::getVar('web') == '1'? "selected='selected'":""; ?> > 1 </option>
+										<option value="2" <?php echo JRequest::getVar('web') == '2'? "selected='selected'":""; ?> > 2 </option>
+										<option value="3" <?php echo JRequest::getVar('web') == '3'? "selected='selected'":""; ?> > 3</option>
+										<option value="4" <?php echo JRequest::getVar('web') == '4'? "selected='selected'":""; ?> > 4</option>
+										<option value="5" <?php echo JRequest::getVar('web') == '5'? "selected='selected'":""; ?> > 5 </option>
+							</select>
+							</div>
+							<div class="col-lg-6"></div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			   </div>
+			</form>
+		<?php endif; 
+		//fin affichage des filtres
+		?>
+			
+			
+			
             <div class="gmapfp_enveloppe_liste" style="overflow:auto; <?php 
 				if ($this->params->get('gmapfp_position_liste')<2) { 
 					//echo 'width:'.($width_liste2+22).'px; '; 
@@ -206,7 +304,14 @@ if ($this->params->get('gmapfp_filtre')==1) :
                 //echo $affichage.$row->nom; 
                 ?><span> Quick View </span>
                 	 </span> 
-				<button class="btn btn-warning btn-sm" >Contact Seller</button>			
+				<button class="btn btn-warning btn-sm" >Contact Seller</button>
+				<?php  if($uid > 0){ 
+					if(!in_array($row->id, $property_ids) ){
+				?>
+				<button class="btn btn-warning btn-sm addwishlist"  name="<?php echo $row->id; ?>" > Add wishlist </button>			
+				<?php } else { ?>
+				<button class="btn btn-warning btn-sm rmovewishlist"  name="<?php echo $row->id; ?>" > Remove wishlist </button>			
+				<?php }  } ?>
 				</div>	
                 </div>	
             	</td>
@@ -250,4 +355,15 @@ if (!empty($this->perso->conclusion_detail)) {
 	echo $article->text;
 }
 ?> 
+<script>
+	function formidbudget(){
+		if(jQuery('#formidbudget').css('display') == 'none'){
+			jQuery('#formidbudget').css('display','block');
+			 
+		} else {
+			jQuery('#formidbudget').css('display','none');
+			 
+		}
+	}
+</script>
  
