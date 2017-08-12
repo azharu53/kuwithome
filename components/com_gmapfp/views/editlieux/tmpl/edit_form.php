@@ -315,7 +315,7 @@ if ($this->params->get('show_page_heading')) : ?>
 
 </script>
 
-<form action="<?php echo JRoute::_('index.php?',false);//echo JRoute::_('index.php?option=com_gmapfp&view=editlieux&controller=editlieux',false); ?>" method="post" name="adminForm">
+<form action="<?php echo JRoute::_('index.php?',false);//echo JRoute::_('index.php?option=com_gmapfp&view=editlieux&controller=editlieux',false); ?>" method="post" class="well" name="adminForm">
 	<div style="height:70px">
     <div class="toolbar" id="toolbar" style="height:70px"> 
 		<table class="toolbar"><tr> 

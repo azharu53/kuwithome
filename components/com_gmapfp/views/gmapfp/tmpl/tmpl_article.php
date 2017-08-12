@@ -17,8 +17,8 @@ $itemid = JRequest::getVar('Itemid', 0, '', 'int');
 $layout = JRequest::getVar('layout', '', '', 'str');
 
 $row=$this->lieu;
-
-$image=JURI::base().$this->params->get('gmapfp_chemin_img').$row->img;
+$img = explode(",", $row->img);
+$image=JURI::base().$this->params->get('gmapfp_chemin_img').$img[0];
 $clock=JURI::base().'components/com_gmapfp/images/clock_32.png';
 $globe=JURI::base().'components/com_gmapfp/images/globe_32.png';
 $printer=JURI::base().'components/com_gmapfp/images/printer.png';
@@ -50,6 +50,7 @@ $loupe=JURI::base().'components/com_gmapfp/images/recherche.png';
 					$width_carte=$this->params->get('gmapfp_width');
 				}
 			};
+			/*
 			echo '<a class="modal" rel="{size: {x:'.$width_carte.', y:'.$height_carte.'}, handler:\'iframe\'}" href="'.$link.'"  title="'.JText::_('GMAPFP_CARTE').'"><img src='.$globe.' /></a>&nbsp;&nbsp;&nbsp;';
 			$link =JRoute::_('index.php?option=com_gmapfp&view=gmapfp&tmpl=component&layout=print_article&flag=1&id='.$row->id.'&Itemid='.JRequest::getVar('Itemid', 0, '', 'int'));
 			echo '<a href="'.$link.'" class="modal" rel="{size: {x:'.$width_carte.', y:800}, handler:\'iframe\'}" title="'.JText::_('GMAPFP_IMPRIMER').'"><img src='.$printer.' /></a>&nbsp;&nbsp;&nbsp;';
@@ -57,6 +58,7 @@ $loupe=JURI::base().'components/com_gmapfp/images/recherche.png';
 				$link =JRoute::_('index.php?option=com_gmapfp&view=gmapfp&tmpl=component&layout=item_msg&flag=1&id='.$row->id.'&Itemid='.JRequest::getVar('Itemid', 0, '', 'int'));
 				echo '<a href="'.$link.'" class="modal" rel="{size: {x:'.$width_msg.', y:'.$height_msg.'}, handler:\'iframe\'}" title="'.JText::_('GMAPFP_DISPLAY_MSG').'"><img src='.$msg.' /></a>&nbsp;&nbsp;&nbsp;';
 			};
+			*/
 			$link4=substr($row->link,0,4);
 			$link5=substr($row->link,0,5);
 			$link9=substr($row->link,0,9);
@@ -104,28 +106,40 @@ $loupe=JURI::base().'components/com_gmapfp/images/recherche.png';
 	<div class="gmapfp_detail">
 		<div class="gmapfp_taille1 pull-left">
 			<?php
-				if ($row->img!=null) { ?> <a class="modal" href='<?php echo $image; ?>' ><img src=<?php echo $image; ?> style="height:<?php echo $this->params->get('gmapfp_hauteur_img')?>px;"/><img src=<?php echo $loupe; ?> style="height:18px;"/></a> <?php }; ?>
+				if ($row->img!=null) { ?> 
+				<a class="modal" href='<?php echo $image; ?>' >
+				<!-- <img src=<?php echo $image; ?> style="height:<?php echo $this->params->get('gmapfp_hauteur_img')?>px;"/> -->
+				<img src=<?php echo $image; ?> style="width:90%;"/>
+				<img src=<?php echo $loupe; ?> style="height:18px;"/>
+				</a> 
+				<?php }; ?>
+				<?php ?> 
 		</div>
 		<div class="gmapfp_taille2 pull-left">
 			<?php
-			if ($row->adresse!=null) {echo JText::_('GMAPFP_ADRESSE').'<span>'.$row->adresse.'</span><br />';};
-			if ($row->adresse2!=null) {echo JText::_('GMAPFP_ADRESSE').'<span>'.$row->adresse2.'</span><br />';};
-			if ($row->codepostal!=null) {echo JText::_('GMAPFP_CODEPOSTAL').'<span>'.$row->codepostal.'</span><br />';};
-			if ($row->ville!=null) {echo JText::_('GMAPFP_VILLE').'<span>'.$row->ville.'</span><br />';};
-			if ($row->departement!=null) {echo JText::_('GMAPFP_DEPARTEMENT').'<span>'.$row->departement.'</span><br />';};
-			if ($row->pay!=null) {echo JText::_('GMAPFP_PAYS').'<span>'.$row->pay.'</span><br />';};
+			if ($row->adresse!=null) {echo '<strong>'.JText::_('GMAPFP_ADRESSE').'</strong><br><span>'.$row->adresse.'</span><br />';};
+			if ($row->adresse2!=null) {echo '<strong>'.JText::_('GMAPFP_ADRESSE').'</strong><br><span>'.$row->adresse2.'</span><br />';};
+			if ($row->codepostal!=null) {echo '<strong>'.JText::_('GMAPFP_CODEPOSTAL').'</strong><br><span>'.$row->codepostal.'</span><br />';};
+			if ($row->ville!=null) {echo '<strong>'.JText::_('GMAPFP_VILLE').'</strong><br><span>'.$row->ville.'</span><br />';};
+			if ($row->departement!=null) {echo '<strong>'.JText::_('GMAPFP_DEPARTEMENT').'</strong><br><span>'.$row->departement.'</span><br />';};
+			if ($row->pay!=null) {echo '<strong>'.JText::_('GMAPFP_PAYS').'</strong><br><span>'.$row->pay.'</span><br />';};
+			if ($row->addfeature!=null) {echo '<strong>'.JText::_('Feature').'</strong><br><span>'.$row->addfeature.'</span><br />';};
 			?>
 		</div>
 		<div class="pull-left">
 			<?php
-			if ($row->tel!=null) {echo JText::_('GMAPFP_TEL').'<span>'.$row->tel.'</span><br />';};
-			if ($row->tel2!=null) {echo JText::_('GMAPFP_TEL').'<span>'.$row->tel2.'</span><br />';};
-			if ($row->fax!=null) {echo JText::_('GMAPFP_FAX').'<span>'.$row->fax.'</span><br />';};
-			if (($row->email!=null)and($this->params->get('gmapfp_msg')==0)) {echo JText::_('GMAPFP_EMAIL').'<span>'.@JHTML::_('email.cloak',$row->email).'</span><br />';};
+			if ($row->tel!=null) {echo '<strong>'.JText::_('GMAPFP_TEL').'</strong><br><span>'.$row->tel.'</span><br />';};
+			if ($row->tel2!=null) {echo '<strong>'.JText::_('GMAPFP_TEL').'</strong><br><span>'.$row->tel2.'</span><br />';};
+			if ($row->fax!=null) {echo '<strong>'.JText::_('GMAPFP_FAX').'</strong><br><span>'.$row->fax.'</span><br />';};
+			if (($row->email!=null)and($this->params->get('gmapfp_msg')==0)) {echo '<strong>'.JText::_('GMAPFP_EMAIL').'</strong><br><span>'.@JHTML::_('email.cloak',$row->email).'</span><br />';};
 			if ($row->web!=null) {
 				if (substr($row->web,0,5)!="http:") {$lien_web = "http://".$row->web;} else {$lien_web = $row->web;};
-				echo JText::_('GMAPFP_SITE_WEB').'<span><a href='.$lien_web.' target="_blank" > '.$row->web.' </a></span> <br />';
+				//echo JText::_('GMAPFP_SITE_WEB').'<span><a href='.$lien_web.' target="_blank" > '.$row->web.' </a></span> <br />';
+				echo '<strong>'.JText::_('GMAPFP_SITE_WEB').'</strong><br><span>'.$row->web.' </span> <br />';
 			};
+			if ($row->occupant!=null) {
+					echo '<strong>'.JText::_('Occupant get access to below');?>
+					</strong><br><span><?php echo $row->occupant;?></span><br /> <?php };
 			?>
 		</div>
 	</div>
@@ -133,11 +147,13 @@ $loupe=JURI::base().'components/com_gmapfp/images/recherche.png';
 	<?php if ($layout!='article') {?>
 		<div class="gmapfp_article">
 			<?php
-			if ($row->intro!=null) {echo JText::_('GMAPFP_MESSAGE').'<span>'.$row->intro.'</span>';};
+			if ($row->intro!=null) {echo '<strong>'.JText::_('GMAPFP_MESSAGE').'</strong><br><span>'.$row->intro.'</span>';};
 			if ($row->message!=null) {
 				echo '<br />';
-				$link =JRoute::_('index.php?option=com_gmapfp&view=gmapfp&tmpl=component&layout=article&flag=1&id='.$row->id.'&Itemid='.JRequest::getVar('Itemid', 0, '', 'int'));
-				echo '<p class="readmore"><a class="modal" rel="{size: {x:650, y:500}, handler:\'iframe\'}" href="'.$link.'">'.JText::_('GMAPFP_LIRE_SUITE').'</a></p>';
+				echo $row->message;
+				
+				//$link =JRoute::_('index.php?option=com_gmapfp&view=gmapfp&tmpl=component&layout=article&flag=1&id='.$row->id.'&Itemid='.JRequest::getVar('Itemid', 0, '', 'int'));
+				//echo '<p class="readmore"><a class="modal" rel="{size: {x:650, y:500}, handler:\'iframe\'}" href="'.$link.'">'.JText::_('GMAPFP_LIRE_SUITE').'</a></p>';
 			}; ?>
 		</div>
 	<?php } ?>

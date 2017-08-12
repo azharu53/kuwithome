@@ -167,7 +167,8 @@ class GMapFPsModelEditLieux extends JModelLegacy
 
 		// Prepare the content for saving to the database
 		$this->saveGMapfpPrep( $row );
-
+        
+        $data['img'] = implode(",", $data['img']);
         $data['occupant'] = implode(",", $data['occupant']);
 		$data['addfeature'] = implode(",", $data['addfeature']);
 		

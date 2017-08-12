@@ -218,6 +218,10 @@ class GMapFPsModelGMapFP extends JModelLegacy
 					$wheres[] = ' a.tel2  = '.$db->Quote($_POST['propertytype']);
 				}
 				
+				if(isset($_POST['departement']) && $_POST['departement'] != ''){
+					$wheres[] = ' a.departement  = '.$db->Quote($_POST['departement']);
+				}
+				
 				if(isset($_POST['budgetmin']) && $_POST['budgetmin'] != '' ) {
 					$wheres[] = ' a.pay  >= '.$db->Quote($_POST['budgetmin']);
 				}

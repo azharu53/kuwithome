@@ -415,10 +415,11 @@ $mapTypeId=array();
             $points.='[\''.''.'\'';
 
             $image ='';
+			$img = explode(",", $row->img);
             if (@$row->img) {
-                $image = JURI::base(true).COM_GMAPFP_IMAGES_HTTP_RELATIVE.'/'.$row->img;
+                $image = JURI::base(true).COM_GMAPFP_IMAGES_HTTP_RELATIVE.'/'.$img[0];
                 $image = JPath::clean($image, '/');
-                $image = "<img style='height: 80px;' src='".$image."'>";
+                $image = "<img style='height: 80px; width:80px;' src='".$image."'>";
             }
             $points.= ','.$row->glat.','.$row->glng.',';
             if (@$row->intro) {
@@ -430,6 +431,7 @@ $mapTypeId=array();
                 $message=trim($row->message);
                 $message = str_replace(chr(10), '',$message);
                 $message = str_replace(chr(13), '<BR />',$message);
+				$message='';
             }else{$message='';};
 
             if ($config->get('gmapfp_html_bubble')){

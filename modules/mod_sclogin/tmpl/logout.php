@@ -31,10 +31,10 @@ if ($params->get('greetingName') != 2)
    // echo '<div class="sclogin-greeting">' . JText::sprintf('MOD_SCLOGIN_WELCOME', $name) . '</div>';
 	  echo '<div class="sourcecoast sclogin-modal-links sclogin dropdown" style="position: relative;display: inline-block;">'.
 	   '<a class="topmenumyaccount" href="#login-modal" > My Account</a><div class="dropdown-content">'
-	   .'<a href="'.JRoute::_('index.php?option=com_users&view=profile&layout=edit&Itemid=144').'"> Profile </a>'
-	   .'<a href="'.JRoute::_('index.php?option=com_users&view=reset&Itemid=145').'"> Change Password </a>'
-	   .'<a href="'.JRoute::_('index.php?option=com_wishlist&view=wishlist&Itemid=146').'"> My Wishlist </a>'
-	   .'<a href="'.JRoute::_('index.php?option=com_gmapfp&view=gestionlieux&Itemid=112').'"> My Property </a>'
+	   .'<a href="'.JRoute::_('index.php?option=com_users&view=profile&layout=edit&Itemid=149').'"> Profile  </a>'
+	   .'<a href="'.JRoute::_('index.php?option=com_wishlist&view=wishlist&Itemid=147').'"> My Wishlist </a>'
+	   .'<a href="'.JRoute::_('index.php?option=com_gmapfp&view=gestionlieux&Itemid=115').'"> My Property </a>'
+	   .'<a href="'.JRoute::_('index.php?option=com_codopm&view=codopm&Itemid=150').'"> My Property </a>'
 	   .'<a ' . $registerClass . ' href="javascript:void(0);" onclick="document.getElementById(\'sclogin-form\').submit();">' . JText::_('JLOGOUT') . '</a></div>';
     
        // echo $spacer . '<a ' . $registerClass . ' href="javascript:void(0);" onclick="document.getElementById(\'sclogin-form\').submit();">' . JText::_('JLOGOUT') . '</a>';

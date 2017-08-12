@@ -9,7 +9,7 @@
 	*/
 
 defined('_JEXEC') or die(); 
-
+ 
 $mainframe = JFactory::getApplication(); 
 
 $config = JComponentHelper::getParams('com_gmapfp');
@@ -62,13 +62,13 @@ foreach ($this->lieux as $lieu) {
         </div >
     <?php
     //insertion de JComments
-      $jcomments =  JPATH_SITE.'/components/com_jcomments/jcomments.php';
+      /*$jcomments =  JPATH_SITE.'/components/com_jcomments/jcomments.php';
       if ((file_exists($jcomments))and($this->params->get('gmapfp_jcomments'))) {
-        require_once($jcomments);
+       // require_once($jcomments);
         echo '<div style="clear: both;">';
-        echo JComments::showComments($lieu->id, 'com_gmapfp', $lieu->nom);
+        //echo JComments::showComments($lieu->id, 'com_gmapfp', $lieu->nom);
         echo '</div>';
-      }
-	echo '<div\>';
+      }*/
+	echo '</div>';
 };
  ?>

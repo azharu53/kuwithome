@@ -1,34 +1,18 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  mod_search
- *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright	Copyright (c) 2017 search. All rights reserved.
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 
+// no direct access
 defined('_JEXEC') or die;
 
 /**
- * Helper for mod_search
+ * search - Search Helper Class.
  *
- * @package     Joomla.Site
- * @subpackage  mod_search
- * @since       1.5
+ * @package		Joomla.Site
+ * @subpakage	search.search
  */
-class ModSearchHelper
-{
-	/**
-	 * Display the search button as an image.
-	 *
-	 * @param   string  $button_text  The alt text for the button.
-	 *
-	 * @return  string  The HTML for the image.
-	 *
-	 * @since   1.5
-	 */
-	public static function getSearchImage($button_text)
-	{
-		return JHtml::_('image', 'searchButton.gif', $button_text, null, true, true);
-	}
+class modsearchHelper {
+	
 }
