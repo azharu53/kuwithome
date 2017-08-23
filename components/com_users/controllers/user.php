@@ -95,7 +95,7 @@ class UsersControllerUser extends UsersController
 		{
 			$data['return'] = 'index.php?option=com_users&view=profile';
 		}
-
+		
 		// Set the return URL in the user state to allow modification by plugins
 		$app->setUserState('users.login.form.return', $data['return']);
 

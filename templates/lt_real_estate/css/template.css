@@ -2124,8 +2124,8 @@ hr {  border-bottom: 1px solid #ccc; }
 .gmapfp select{ width: 100%; height: 30px;}
 .gmapfp button  {padding: 4px 15px !important; height: 30px;}
 .gmapfpform input,.gmapfpform select,.gmapfpform button, .gmapfpform textarea{font-size: 14px !important;}
-.registration button {padding: 4px 15px !important; height: 42px;}
-a.btn { padding: 10px 15px !important; }
+.registration button ,#afterlogin button {padding: 4px 15px !important; height: 42px;}
+a.btn { padding: 10px 15px !important; color:#fff !important;}
 .btn {background-color: #fe943e;   border-radius: 3px;}
 .dropbtn { border: none; cursor: pointer;}
 .dropdown-content { display: none; position: absolute; background-color: #f9f9f9; min-width: 160px;  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;}
@@ -2144,3 +2144,65 @@ table.gmapfpform .col-lg-3 , table.gmapfpform .col-lg-6 ,  table.gmapfpform .col
 #codopm_tabs .btn-primary {height: 30px!important; }
 #sp-component { min-height: 450px; }
 #codopm_tabs ul li a { padding: 10px 30px; }
+.contactus input, .contactus textarea {width: 100%;}
+.contactus textarea {height: 150px;}
+#sp-component { min-height: 900px}
+#share-buttons img {width: 35px; padding: 5px; border: 0; box-shadow: 0; display: inline; }
+.alert-success { background-color: #dff0d8; border-color: #d6e9c6; color: #3c763d; }
+.alert-info, .alert-message { background-color: #d9edf7; border-color: #bce8f1; color: #31708f; }
+.alert-warning { background-color: #fcf8e3; border-color: #faebcc; color: #8a6d3b; }
+.alert-danger { background-color: #f2dede; border-color: #ebccd1; color: #a94442; }
+.waitloader { border: 16px solid #f3f3f3; border-radius: 50%; border-top: 16px solid #555; width: 120px; height: 120px;-webkit-animation: spin 2s linear infinite; animation: spin 2s linear infinite; }
+@-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); }}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}
+.gmapfp_liste td {padding-top:20px; padding-bottom:20px; }
+
+
+input.btl-buttonsubmit,button.btl-buttonsubmit{ border:none!important;
+    box-shadow: 1px 1px 3px rgba(9,4,3,0.86);  cursor: pointer;  text-align: center!important;    text-shadow: 0 1px 1px #4A4A4A;    width: auto!important;	padding:0 12px;	height:29px!important;;	line-height:29px!important;	display:inline-block;}
+div.btl-buttonsubmit{	text-align:center!important;	padding:5px 0 0 0!important; border-top:1px solid #dddddd;	margin:10px 25px 30px 20px}
+
+/* STYLE FOR DROP-DOWN PANEL (all element in  #btl-content) */
+#btl-content ul li a:hover{	color:#7BA428 !important; text-decoration: underline!important;	background-color: transparent!important;}
+#btl-content > .btl-content-block{	position:absolute!important;	z-index:9999;}
+#btl-content #btl-content-login{	width:350px;}
+#btl-content-registration{	min-width:350px;}
+.btl-note,#register-link{	padding:18px 0px;}
+
+ #btl-content-login .btl-input{	float:right;}
+ #btl-content-login .spacer{	height:14px;}
+
+#btl-content div.btl-buttonsubmit{	border-top: 1px dotted #c4c4c4;}
+#btl-content #btl-content-login .btl-label {	line-height:38px;	min-width: 0px!important;}
+
+/* CSS FOR USER PROFILE MODULE**/
+#btl-content  #btl-content-profile{overflow:hidden;}
+#module-in-profile{	min-width:200px;}
+#btl-content #btl-content-profile #module-in-profile ul{ position: static; text-align: left; margin: 0 0 0 15px; padding: 0!important;	
+}
+#btl-content-profile ul.menu li { background: url("../images/bullet.png") no-repeat scroll 5px 15px transparent;    padding: 0 0 0 20px!important;	border-bottom: 1px solid #E8E8E8;	display:list-item!important;    line-height: 37px;}
+#btl-content #btl-content-profile #module-in-profile ul li a{	color: #6b6b6b;	text-decoration: none !important;	text-transform: none!important;	font-family: arial,tahoma;}
+
+#btl-content-profile ul.menu li a {  color: #616161!important;	text-decoration:none!important;	border:none!important;	background:none!important;
+	display:inline!important; padding:0!important;	margin:0!important;	text-transform: none!important;}
+#btl-content-profile div.btl-buttonsubmit{ clear:both;	margin-bottom:15px;	border: none!important;	text-align: center;	margin-top: 0!important;}
+/* style panel when action process */
+#btl-register-in-process,#btl-login-in-process{	display: none; background: url("../images/loading.gif") no-repeat #000 50%;
+	opacity: 0.4; width: 100%; height: 100%; position: absolute; z-index: 9999; top:-1px; left:-1px;	padding-top:1px; padding-left:1px;}
+
+/* style panel when register success */
+#btl-success{ display: none; margin: 20px 0 30px 0;
+	background:url("../images/notice-info.png") no-repeat;	display: none; color:#000;
+	border-bottom: 2px solid #90B203; border-top: 2px solid #90B203; font-size:14px; padding: 10px 10px 10px 25px;
+}
+/* style for ul in login panel*/
+#bt_ul{	margin-top:-10px!important;	margin-bottom:20px!important; margin-right: 25px!important; float:right;}
+/* for modal*/
+#btl-content-login ul{position: static!important;	text-align: left;	list-style-type: disc !important;}
+#btl-content-login ul li{ margin-top: 3px;}
+#bt_ul li a{ padding: 0!important; text-decoration: none!important; color:#545454!important;}
+#btl-wrap-module{ padding-left: 20px; padding-bottom: 20px; padding-top: 10px;}
+#cboxTitle { border-bottom: unset !important;}
+#afterlogin input {width: 80%;}
+.gmapfp_liste .btn {padding: 6px 15px !important;}
+.gmapfp_liste button { padding: 10px 15px !important; height:unset !important;}

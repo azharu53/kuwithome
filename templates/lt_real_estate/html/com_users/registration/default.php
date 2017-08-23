@@ -50,7 +50,7 @@ JHtml::_('behavior.formvalidation');
 					<?php endif;?>
 				<?php endforeach;?>
 
-				<div class="form-group row">
+				<div class="form-group">
 				<div class="col-lg-12">
 					<button type="submit" class="btn btn-primary validate"><?php echo JText::_('JREGISTER');?></button>
 					<a class="btn btn-danger" href="<?php echo JRoute::_('');?>" title="<?php echo JText::_('JCANCEL');?>"><?php echo JText::_('JCANCEL');?></a>

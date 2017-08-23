@@ -56,8 +56,9 @@ defined('_JEXEC') or die;
             $zoom = $rows[0]->gzoom;
         };
     };
+	$zoom =12;
     if (($zoom == "") or ($zoom == 0)) {
-        $zoom = $config->get('gmapfp_zoom', 10);
+        $zoom = $config->get('gmapfp_zoom', 15);
     };
     if (!($Zmap)) {
         $Zmap = $zoom;
@@ -585,6 +586,8 @@ $mapTypeId=array();
 		var travel_mode'.$num.' = google.maps.DirectionsTravelMode.DRIVING;
 		var marker_precedent'.$num.' = 0;
 		var markerCluster'.$num.' = null;
+		var centerchangedifflat'.$num.' = 0;
+		var centerchangedifflon'.$num.' = 0;
 
         function create_carteGMapFP'.$num.'() {
             '.$mapTypeIds.'
@@ -619,6 +622,34 @@ $mapTypeId=array();
 		.$active_logo
 		.$auto_ouvrir
 		.'
+			var cente = carteGMapFP'.$num.'.getCenter();
+			var centerchangedifflat'.$num.' = cente.lat();
+			var centerchangedifflon'.$num.' = cente.lng();
+		 
+		  	    google.maps.event.addListener(carteGMapFP'.$num.', "center_changed", function(e) {
+					var cente = carteGMapFP'.$num.'.getCenter();
+					//centerchangedifflat'.$num.' = cente.lat();
+					//centerchangedifflon'.$num.' = cente.lng();
+					if((centerchangedifflat'.$num.' - cente.lat()) > 0.15){ 
+						centerchangedifflat'.$num.' = cente.lat();
+						document.getElementById("chalatitude").value = cente.lat();
+						document.getElementById("chalongitude").value = cente.lng();
+						document.getElementById("cboxOverlay").style.display = "block";
+						document.getElementById("cboxOverlaywaitd").style.display = "block";
+						document.getElementById("gmapfileter").submit() ;
+					
+					}
+					if((centerchangedifflon'.$num.' - cente.lng()) > 0.15){ 
+						centerchangedifflon'.$num.' = cente.lng();
+						document.getElementById("chalatitude").value = cente.lat();
+						document.getElementById("chalongitude").value = cente.lng();
+						document.getElementById("cboxOverlay").style.display = "block";
+						document.getElementById("cboxOverlaywaitd").style.display = "block";
+						document.getElementById("gmapfileter").submit() ;
+					
+					}
+					 
+				});
 			};
 		'
 		.$code_logo
@@ -853,7 +884,7 @@ $mapTypeId=array();
 	
 	}else{
     $carte.= '<script language="javascript" type="text/javascript">
-
+		
 		google.maps.event.addDomListener(window, "load", initialise_map_gmapfp'.$num.');
 
 		var tstGMapFP'.$num.' = document.getElementById("map_canvas'.$num.'");
@@ -871,6 +902,8 @@ $mapTypeId=array();
 		function initialise_map_gmapfp'.$num.'() {
 		   tstGMapFP'.$num.'.setAttribute("oldValue",0);
 		   tstIntGMapFP'.$num.' = setInterval("CheckGMapFP'.$num.'()",500);
+		   
+		   
 		}
    </script>';
    }

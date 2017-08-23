@@ -243,7 +243,7 @@ if (empty($_zoom)) {$_zoom = 10;};
 				var bar = $('<div class="progress progress-striped active">'+
 								'<div class="bar"></div>'+
 							'</div>');
-				$('#gmapfp_image').append(bar);
+				/*$('#gmapfp_image').append(bar);*/
 				
 				var preview = $('#gmapfp_image');
 				var image = $('img', preview);
@@ -252,14 +252,14 @@ if (empty($_zoom)) {$_zoom = 10;};
 
 				reader.onload = function(e){
 						// e.target.result holds the DataURL which
-						image.attr('src',e.target.result);
+						//image.attr('src',e.target.result);
 				};
 
 				// Reading the file as a DataURL. When finished,
 				// this will trigger the onload function above:
 				reader.readAsDataURL(file);
 
-				preview.appendTo('#gmapfp_image');
+				//preview.appendTo('#gmapfp_image');
 				// Associating a preview container
 				// with the file, using jQuery's $.data():
 
@@ -272,18 +272,21 @@ if (empty($_zoom)) {$_zoom = 10;};
 				if (response.response != true) {
 					bootbox.alert(response.datas);
 					if ($('#img').val()) {
-						image.attr('src','<?php echo JURI::root(); ?>images/gmapfp/' + $('#img').val());
+						//image.attr('src','<?php echo JURI::root(); ?>images/gmapfp/' + $('#img').val());
 					} else {
 						image.attr('src','<?php echo JURI::root(); ?>images/gmapfp/blank/blank.png');
 					}
-					preview.appendTo('#gmapfp_image');
+					//preview.appendTo('#gmapfp_image');
 				} else {
-					$('<option />', {val: response.datas, text: file.name}).appendTo($('#img'))
+					/* $('<option />', {val: response.datas, text: file.name}).appendTo($('#img'))
 					$('#img option[value="' + response.datas + '"]').attr('selected', 'selected');
 					// $('#img').trigger('chosen:updated'); //nouvelle methode
 					$('#img').val(response.datas).trigger('liszt:updated'); //ancienne methode
 					image.attr('src','<?php echo JURI::root(); ?>images/gmapfp/' + response.datas);
-					preview.appendTo('#gmapfp_image');
+					preview.appendTo('#gmapfp_image'); */
+					$('<div class="col-lg-6" style="width:48%;float:left;" id="d'+time+'"><a herf="javascript:void(0);" style="float:right;" onclick="imgremove(\''+time+'\',\'d'+time+'\' )">X </a><br/><img src="<?php echo JURI::root().'images/gmapfp/';?>'+response.datas+'"  name="imagelib" style="width:90%;"/></div>').appendTo('#gmapfp_image');
+					$('<input type="hidden" id="'+time+'" value="'+response.datas+'" name="img[]">').appendTo('#imagehidden');
+					
 				}
 			},
 			progressUpdated: function(i, file, progress) {
@@ -311,7 +314,14 @@ if (empty($_zoom)) {$_zoom = 10;};
 			return false;
 		});
 	});
-
+ 
+	 var imgna, imgnv;
+		function imgremove(imgna , imgnv ){
+			alert(imgna +' '+ imgnv)
+			jQuery('#'+imgna).remove();
+			jQuery('#'+imgnv).remove();
+		}
+	
 </script>
 
 <form action="index.php" method="post" name="adminForm" id="item-form" class="gmapfp form-validate">
@@ -667,7 +677,8 @@ if (empty($_zoom)) {$_zoom = 10;};
 				</table>
 			</div>
 			<div class="span6">
-				<div id="dropzonefp">
+			<!--
+				 <div id="dropzonefp">
 						<label for="title">
 							<?php echo JText::_('GMAPFP_IMAGE'); ?>:
 						</label>
@@ -697,7 +708,53 @@ if (empty($_zoom)) {$_zoom = 10;};
 							<input type="file" id="upload_filefp_input" multiple="">
 							<a href="" id="upload_filefp_button" class="btn btn-primary"><i class="icon-picture"></i>&nbsp;<?php echo '&nbsp;&nbsp;&nbsp;'.JText::_('GMAPFP_UPLOAD') ?></span></a>
 						</div>
-				</div>
+				</div> -->
+				<div id="dropzonefp">
+									<label for="title" style="display:none;">
+										<?php echo JText::_('GMAPFP_IMAGE'); ?>
+									</label>
+									<label class="drop_info" style="cursor:default;display:none;">
+										<?php echo JText::_('GMAPFP_DROP_ZONE_IMAGE'); ?>
+									</label>
+									<div id="gmapfp_image" class="gmapfp_image" style="overflow:auto;">
+									<?php 
+										$directory		= JURI::root().'images/gmapfp/';
+							$javascript		= 'onchange="changeDisplayImage('."'".$directory."'".');"';
+										$img = explode(",",$this->gmapfp->img);
+										$j=1;
+										foreach($img as $i){
+											if ((stristr($i,'bmp'))||(stristr($i,'gif'))||(stristr($i,'jpg'))||(stristr($i,'jpeg'))||(stristr($i,'png'))) {
+											?>
+											<div class="col-lg-6" style="width:48%;float:left;" id="imgd_<?php echo $j; ?>" >
+											<a href="javascript:void(0);" style="float:right" onclick="imgremove('img_<?php echo $j; ?>', 'imgd_<?php echo $j; ?>')"> X </a><br/>
+											<img src="<?php echo $directory.trim($i); ?>" name="imagelib"  style="width:90%;"/>
+											
+											</div>
+											<?php
+											} else {
+											?>
+											<div class="col-lg-6" style="width:48%;float:left;"><img src="<?php echo $directory; ?>blank/blank.png" name="imagelib" style="width:90%;" /></div>
+											<?php
+											}
+											$j++;
+										}
+										
+										echo '</div>';
+										echo '<div>';
+										?>
+										<div class="imagehidden" id="imagehidden" >
+										<?php
+										$j=1;
+										foreach($img as $i){
+										?>
+										<input type="hidden" id="img_<?php echo $j; ?>" name="img[]" value="<?php echo $i; ?>" />
+										<?php $j++; } ?>
+										</div>
+										<br />
+										<input type="file" id="upload_filefp_input" multiple="">
+										<a href="" id="upload_filefp_button" class="btn btn-primary"><i class="icon-picture"></i>&nbsp;<?php echo '&nbsp;&nbsp;&nbsp;'.JText::_('GMAPFP_UPLOAD') ?></span></a>
+									</div>
+								</div>
 			</div>
 		</div>
 		<div class="span12">

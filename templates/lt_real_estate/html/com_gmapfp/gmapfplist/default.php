@@ -149,7 +149,7 @@ if ($this->params->get('gmapfp_filtre')==1) :
 		    <div class="col-lg-6 class50" style="float:left;">
 			
 			<?php
-			echo '<form action="'.JRoute::_('index.php?option=com_gmapfp&view=gmapfplist'.$layout_str.'&id_perso='.$perso.'&Itemid='.$itemid).'" method="post" name="adminForm">';
+			echo '<form id="gmapfileter" action="'.JRoute::_('index.php?option=com_gmapfp&view=gmapfplist'.$layout_str.'&id_perso='.$perso.'&Itemid='.$itemid).'" method="post" name="adminForm">';
 			?><div class="table-responsive1">
 				<table  class="gmapfpform table" >
 					<tr>
@@ -158,7 +158,8 @@ if ($this->params->get('gmapfp_filtre')==1) :
 							<div class="row">
 							<div class="col-lg-3">
 							<?php //if (@$this->lists['categorie']) {echo $this->lists['categorie'];}; ?>
-							<select class="inputbox" name="departement" id="departement" size="1" >
+							<select class="inputbox" name="departement" id="departement" onchange="this.form.submit();" size="1" >
+								<option value="" > Select Area </option>
 								<?php 
 									foreach($fields['departement'] as $f){
 										?><option value="<?php echo $f['value']; ?>" <?php echo JRequest::getVar('departement') == $f['value'] ? "selected='selected'":""; ?> > <?php echo $f['name']; ?></option>
@@ -175,11 +176,12 @@ if ($this->params->get('gmapfp_filtre')==1) :
 							
 							<button type="reset" onclick="
 								document.getElementById('search_gmapfp').value='';
-								<?php if (@$this->lists['ville']) {?>document.adminForm.filtreville.value='-- <?php echo JText::_( 'GMAPFP_VILLE_FILTRE' ) ?> --'; <?php };?>
-								<?php if (@$this->lists['departement']) {?>document.adminForm.filtredepartement.value='-- <?php echo JText::_( 'GMAPFP_DEPARTEMENT_FILTRE' ) ?> --'; <?php };?>
-								<?php if (@$this->lists['pays']) {?>document.adminForm.filtrepays.value='-- <?php echo JText::_( 'GMAPFP_PAYS_FILTRE' ) ?> --'; <?php };?>
-								<?php if (@$this->lists['categorie']) {?>document.adminForm.filtrecategorie.value='-- <?php echo JText::_( 'GMAPFP_CATEGORIE_FILTRE' ) ?> --'; <?php };?>
-								this.form.submit();
+								document.getElementById('tel').value=''; 
+								document.getElementById('tel2').value=''; 
+								document.getElementById('email').value=''; 
+								document.getElementById('postedby').value='';
+								document.getElementById('web').value='';
+								/* this.form.submit(); */
 							"><?php echo JText::_( 'GMAPFP_RESET' ); ?>
 							</button>
 							</div>
@@ -192,7 +194,7 @@ if ($this->params->get('gmapfp_filtre')==1) :
 							?>
 							<div class="row">
 							<div class="col-lg-2">
-							<select id="tel" class="inputbox " name="tel" size="1" style="width:100%" >
+							<select id="tel" class="inputbox " name="tel" size="1" onchange="this.form.submit();" style="width:100%" >
 								<option value=""> BHK </option>
 								<?php 
 								foreach($fields['tel'] as $f){
@@ -207,15 +209,16 @@ if ($this->params->get('gmapfp_filtre')==1) :
 							<div id="formidbudget" style="display:none; position:relative; z-index:99999;" >
 							<div style="position:absolute;" >
 							<div class="row">
-							<div class="col-lg-6"><input name="budgetmin" style="width:90%;" type="number" value="" placeholder="MIN" min="1" /> </div>
-							<div class="col-lg-6"><input name="budgetmax" style="width:90%;" type="number" value="" placeholder="MAX" min="1"/></div>
+							<div class="col-lg-6"><input name="budgetmin" style="width:90%;" type="number" value="<?php echo JRequest::getVar('budgetmin',''); ?>" placeholder="MIN" min="1" /></div>
+							<div class="col-lg-6"><input name="budgetmax" style="width:90%;" type="number" value="<?php echo JRequest::getVar('budgetmax',''); ?>" placeholder="MAX" min="1"/></div>
 							</div>
 							</div>
 							</div>
 							</div>
 							<div class="col-lg-3">
 							
-							<select id="tel2" class="inputbox " name="tel2" size="1"  style="width:100%" >
+							<select id="tel2" class="inputbox " name="tel2" size="1" onchange="this.form.submit();" style="width:100%" >
+								<option value=""> Property Type </option>
 								<?php 
 									foreach($fields['tel2'] as $f){
 										?><option value="<?php echo $f['value']; ?>" <?php echo JRequest::getVar('tel2') == $f['value']? "selected='selected'":""; ?> > <?php echo $f['name']; ?></option>
@@ -239,7 +242,7 @@ if ($this->params->get('gmapfp_filtre')==1) :
 							</div>
 							<div class="row">
 							<div class="col-lg-3">
-							<select id="email" class="inputbox " name="postedby" size="1" onchange="this.form.submit();" >
+							<select id="postedby" class="inputbox " name="postedby" size="1" onchange="this.form.submit();" >
 								<option value=""> Posted By </option>
 								<?php foreach($postedby as $u){ ?>
 									<option value="<?php echo $u->userid; ?>" <?php echo JRequest::getVar('postedby') == '1'? "selected='selected'":""; ?> > <?php echo $u->username; ?> </option>
@@ -264,6 +267,8 @@ if ($this->params->get('gmapfp_filtre')==1) :
 					</tr>
 				</table>
 			   </div>
+			   <input name="chalatitude"  type="hidden" value="<?php echo JRequest::getVar('chalatitude',''); ?>" id="chalatitude" />
+			   <input name="chalongitude" type="hidden" value="<?php echo JRequest::getVar('chalongitude',''); ?>" id="chalongitude" />
 			</form>
 		
 			
@@ -291,8 +296,11 @@ if ($this->params->get('gmapfp_filtre')==1) :
             	<td nowrap="nowrap" class="gmapfp_article_listing_<?php $index_list++; echo (($index_list%2) XOR $decale); ?>" style="height:120px">
 				<div class="">
             	<div class="col-lg-3">
-					<?php $img = explode(",",$row->img); ?>
+					<?php  $img = explode(",",$row->img); if($img[0]){ ?>
 					<img src="<?php echo JURI::root().'images/gmapfp/'.$img[0];?>" width="100%">
+					<?php } else { ?>
+					<img src="<?php echo JURI::root().'images/gmapfp/blank/no.gif' ?>" width="100%">
+					<?php } ?>
 				</div>
 				<div class="col-lg-6" >
 				    <div style="margin-left:15px;" >
@@ -320,14 +328,16 @@ if ($this->params->get('gmapfp_filtre')==1) :
 					$compte ++;
 				};
                 $affichage = "";
+				
                 if ($this->params->get('gmapfp_view_marqueur'))
                 	$affichage="<img src=".$row->marqueur.">";
                 if ($this->params->get('gmapfp_view_ville'))
                     $affichage .= $row->ville." : ";
                 //echo $affichage.$row->nom; 
                 ?><span> Quick View </span>
-                	 </span> 
-				<button class="btn btn-warning btn-sm" >Contact Seller</button>
+                	 </span>
+                <a class="modal_link cboxElement  btn btn-warning btn-sm" data-modal-class-name="no_title" data-modal-inner-height="500" data-modal-inner-width="800" href="<?php echo JRoute::_('index.php?option=com_propertycontact&view=inquiryform&Itemid=162'); ?>?ml=1<?php echo '&proid='.$row->id.'&uid='.$row->userid; ?>" data-modal-done="1"> Contact Seller </a>
+				
 				<?php  if($uid > 0){ 
 					if(!in_array($row->id, $property_ids) ){
 				?>
@@ -375,6 +385,14 @@ if ($this->params->get('gmapfp_filtre')==1) :
     <?php };?>
 </table>
 </div>
+
+
+<div id="cboxOverlay" style="opacity: 0.5; cursor: pointer; visibility: visible; display: none;"></div>
+<div id="cboxOverlaywaitd" class="" role="dialog" tabindex="-1" style="  display: none;  height: 410px; left: 45%; right:45%;  position: absolute; text-align: center; top: 35%;  visibility: visible;  width: 316px;">
+<div class="waitloader"></div> 
+</div>
+</div>
+
 
 <?php 
 if (!empty($this->perso->conclusion_detail)) {

@@ -21,7 +21,8 @@ if (empty($_lng)) {$_lng = 2.1437072753;};
 if (empty($_zoom)) {$_zoom = 10;};
 
 if (!$this->items->id) $this->items->published = 1;
-
+//var_dump($_REQUEST);
+//var_dump($this->items);
 if ($this->params->get('show_page_heading')) : ?>
 	<h1>
 		<?php echo $this->escape($this->params->get('page_heading')); ?>
@@ -379,7 +380,7 @@ $fields =array();
 					<label for="alias"><?php echo JText::_( 'JFIELD_ALIAS_LABEL' ); ?></label>
 				</div>
 				<div class="controls">
-					<input class="text_area" type="text" name="alias" id="alias" size="32" maxlength="255" maxlength="250" value="<?php echo $this->items->alias;?>" />
+					<input class="text_area" type="text" name="alias" id="alias" size="32" maxlength="255" maxlength="250" value="<?php echo $this->items->alias ? $this->items->alias: time() ;?>" />
 				</div>
 			</div>
 			
@@ -457,7 +458,7 @@ $fields =array();
 					<tr <?php if (@$this->params->get('gmapfp_departement_view')){echo 'style="display: none; visibility: hidden;"';}?>>
 						<td style="" class="key">
 							<label for="lag">
-								<?php echo JText::_( 'GMAPFP_DEPARTEMENT' ); ?>
+								<?php echo JText::_( 'Location' ); ?>
 							</label>
 						</td>
 						<td style="" class="key">
@@ -743,7 +744,7 @@ $fields =array();
 					<tr>
 						<td colspan="2" class="key">
 							<label for="title">       
-								<?php echo JText::_('GMAPFP_MAJ_ADRESSE'); ?>
+								<div style="color:red"><?php echo JText::_('GMAPFP_MAJ_ADRESSE'); ?></div>
 							</label>
 						</td>
 					</tr>
@@ -761,7 +762,8 @@ $fields =array();
 							</label><br />
 							<input class="inputbox" type="text" name="glat" id="glat" size="12" maxlength="20" value="<?php echo $this->items->glat ?>" />
 							<input class="inputbox" type="text" name="glng" id="glng" size="12" maxlength="20" value="<?php echo $this->items->glng ?>" />
-							<input class="inputbox" type="text" name="gzoom" id="gzoom" size="2" maxlength="2" value="<?php echo $this->items->gzoom ?>" />
+							<input class="inputbox" type="hidden" id="gzoom" name="gzoom" size="2" maxlength="2" value="14" />
+							<!-- <input class="inputbox" type="text"  size="2" maxlength="2" value="<?php echo $this->items->gzoom ?>" /> -->
 							<input type="button" class="button" onclick="getCoordinate();" value="<?php echo JText::_('GMAPFP_CHERCHER_COORDONNEES'); ?>" />
 						</td>
 					</tr>

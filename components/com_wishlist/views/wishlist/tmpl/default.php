@@ -41,7 +41,7 @@ $canDelete  = $user->authorise('core.delete', 'com_wishlist');
 				<?php echo JHtml::_('grid.sort',  'COM_WISHLIST_WISHLIST_ID', 'a.id', $listDirn, $listOrder); ?>
 				</th>
 				<th class=''>
-				<?php echo JHtml::_('grid.sort',  'COM_WISHLIST_WISHLIST_USERID', 'a.userid', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort',  'Property Name', 'a.userid', $listDirn, $listOrder); ?>
 				</th>
 				<th class=''>
 				<?php echo JHtml::_('grid.sort',  'COM_WISHLIST_WISHLIST_PROPERTY_ID', 'a.property_id', $listDirn, $listOrder); ?>
@@ -61,7 +61,27 @@ $canDelete  = $user->authorise('core.delete', 'com_wishlist');
 		</tr>
 		</tfoot>
 		<tbody>
-		<?php if (count($this->items) > 0 ){ foreach ($this->items as $i => $item) : ?>
+		<?php  if (count($this->items) > 0 ){  $property_ids=array(); $j=0; foreach ($this->items as $i => $item){
+			
+				$property_ids[] = $item->property_id;
+			}
+			$property_id = implode(",",$property_ids);
+			$db = JFactory::getDbo();
+			$query ="SELECT id, nom, adresse, adresse2, ville, departement  FROM #__gmapfp WHERE id IN (".$property_id.")";
+			$db->setQuery($query);
+			$pin =$db->loadObjectList();
+			$pinfo = array();
+			foreach($pin as $p){
+				$pi =array();
+				$pi[] = $p->nom;
+				$pi[] =  $p->adresse;
+				$pi[] =  $p->adresse2;
+				$pi[] =  $p->ville;
+				$pi[] =  $p->departement;
+				$pinfo[$p->id] = implode(", ",$pi);
+			}
+		} ?>
+		<?php if (count($this->items) > 0 ){ $j=0; foreach ($this->items as $i => $item) : ?>
 			<?php $canEdit = $user->authorise('core.edit', 'com_wishlist'); ?>
 
 							<?php if (!$canEdit && $user->authorise('core.edit.own', 'com_wishlist')): ?>
@@ -87,11 +107,11 @@ $canDelete  = $user->authorise('core.delete', 'com_wishlist');
 				<?php if (isset($item->checked_out) && $item->checked_out) : ?>
 					<?php echo JHtml::_('jgrid.checkedout', $i, $item->uEditor, $item->checked_out_time, 'wishlist.', $canCheckin); ?>
 				<?php endif; ?>
-				<a href="<?php echo JRoute::_('index.php?option=com_wishlist&view=wishlists&id='.(int) $item->id); ?>">
-				<?php echo $this->escape($item->id); ?></a>
+			
+				<?php $j++; echo $j; ?>
 				</td>
 				<td>
-					<?php echo $item->userid; ?>
+					<?php echo $pinfo[$p->id]; //echo $item->userid; ?>
 				</td>
 				<td>
 					<?php echo $item->property_id; ?>
@@ -102,7 +122,7 @@ $canDelete  = $user->authorise('core.delete', 'com_wishlist');
 							<a href="<?php echo JRoute::_('index.php?option=com_wishlist&task=wishlistsform.edit&id=' . $item->id, false, 2); ?>" class="btn btn-mini" type="button"><i class="icon-edit" ></i></a>
 						<?php endif; ?>
 						<?php if ($canDelete): ?>
-							<a href="<?php echo JRoute::_('index.php?option=com_wishlist&task=wishlistsform.remove&id=' . $item->id, false, 2); ?>" class="btn btn-mini delete-button" type="button">Delete<i class="icon-trash" ></i></a>
+							<a href="<?php echo JRoute::_('index.php?option=com_wishlist&task=wishlistsform.remove&id=' . $item->id, false, 2); ?>" class="btn btn-mini delete-button" type="button"><i class="icon-trash" ></i></a>
 						<?php endif; ?>
 					</td>
 				<?php endif; ?>

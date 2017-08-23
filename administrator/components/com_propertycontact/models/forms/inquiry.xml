@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="ordering"/>
+    <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+      <option value="1">JPUBLISHED</option>
+      <option value="0">JUNPUBLISHED</option>
+      <option value="2">JARCHIVED</option>
+      <option value="-2">JTRASHED</option>
+    </field>
+    <field name="checked_out" type="hidden" filter="unset"/>
+    <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
+    <field name="created_by" type="createdby" default="0" label="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_CREATED_BY" description="COM_PROPERTYCONTACT_FORM_DESC_INQUIRY_CREATED_BY" hidden="true" hint="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_CREATED_BY"/>
+    <field name="modified_by" type="modifiedby" default="0" label="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_MODIFIED_BY" description="COM_PROPERTYCONTACT_FORM_DESC_INQUIRY_MODIFIED_BY" hidden="true" hint="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_MODIFIED_BY"/>
+    <field name="name" filter="safehtml" type="text" required="true" label="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_NAME" description="COM_PROPERTYCONTACT_FORM_DESC_INQUIRY_NAME" hint="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_NAME"/>
+    <field name="email" validate="email" type="email" required="true" label="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_EMAIL" description="COM_PROPERTYCONTACT_FORM_DESC_INQUIRY_EMAIL" hint="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_EMAIL"/>
+    <field name="phoneno" filter="safehtml" type="tel" required="true" label="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_PHONENO" description="COM_PROPERTYCONTACT_FORM_DESC_INQUIRY_PHONENO" hint="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_PHONENO"/>
+    <field name="propertyid" filter="safehtml" type="hidden" label="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_PROPERTYID" description="COM_PROPERTYCONTACT_FORM_DESC_INQUIRY_PROPERTYID" hint="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_PROPERTYID"/>
+    <field name="selluserid" type="list" label="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_SELLUSERID" description="COM_PROPERTYCONTACT_FORM_DESC_INQUIRY_SELLUSERID" hint="COM_PROPERTYCONTACT_FORM_LBL_INQUIRY_SELLUSERID"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>

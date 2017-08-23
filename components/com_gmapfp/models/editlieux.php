@@ -296,6 +296,10 @@ class GMapFPsModelEditLieux extends JModelLegacy
 			$mailSender->addReplyTo($user_property['email'], '' );
 			$mailSender->setSubject($mySubject);
 			$mailSender->setBody($myMessage);
+			var_dump($myRecipient);
+			var_dump($user_property['email']);
+			var_dump($mySubject);
+			var_dump($myMessage);
 			if (!$mailSender->Send()) {
 				return false;
 			} else {

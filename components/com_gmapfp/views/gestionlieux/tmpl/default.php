@@ -21,6 +21,7 @@ if ($saveOrder)
 	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower(@$this->lists['order_Dir']), $saveOrderingUrl);
 }
 
+
 if ($this->params->get('show_page_heading')) : ?>
 		<h1>
 				<?php echo $this->escape($this->params->get('page_heading')); ?>
@@ -32,25 +33,31 @@ if ($this->params->get('show_page_heading')) : ?>
 <div class="toolbar" id="toolbar"> 
     <table class="toolbar"><tr> 
         <td> 
-            <button name="publish" class="button" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('<?php echo JText::_( 'GMAPFP_CHOISIR_DANS_LISTE' ).' '.JText::_( 'JPUBLISHED' ); ?>');}else{  submitbutton('publish')}">
+          <!-- 
+		    <button name="publish" class="button" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('<?php echo JText::_( 'GMAPFP_CHOISIR_DANS_LISTE' ).' '.JText::_( 'JPUBLISHED' ); ?>');}else{  submitbutton('publish')}">
                 <span class="icon-32-publish" title="<?php echo JText::_( 'JPUBLISHED' ); ?>"> 
                 </span> 
                 <?php echo '&nbsp;'.JText::_( 'JPUBLISHED' ).'&nbsp;'; ?>
             </button>
+		  -->
         </td> 
-        <td> 
+        <td>
+		  <!--
             <button name="unpublish" class="button" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('<?php echo JText::_( 'GMAPFP_CHOISIR_DANS_LISTE' ).' '.JText::_( 'JUNPUBLISHED' ); ?>');}else{  submitbutton('unpublish')}">
                 <span class="icon-32-unpublish" title="<?php echo JText::_( 'JUNPUBLISHED' ); ?>"> 
                 </span> 
                 <?php echo '&nbsp;'.JText::_( 'JUNPUBLISHED' ).'&nbsp;'; ?>
             </button>
+		   -->	
         </td> 
         <td style="display:none;"> 
-            <button name="copy" class="button" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('<?php echo JText::_( 'GMAPFP_CHOISIR_DANS_LISTE' ).' '.JText::_( 'GMAPFP_COPIER' ); ?>');}else{  submitbutton('copy')}">
+           <!--
+			button name="copy" class="button" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('<?php echo JText::_( 'GMAPFP_CHOISIR_DANS_LISTE' ).' '.JText::_( 'GMAPFP_COPIER' ); ?>');}else{  submitbutton('copy')}">
                 <span class="icon-32-copy" title="<?php echo JText::_( 'GMAPFP_COPIER' ); ?>"> 
                 </span> 
                 <?php echo '&nbsp;'.JText::_( 'GMAPFP_COPIER' ).'&nbsp;'; ?>
             </button>
+		   -->
         </td> 
         <td> 
             <button name="delete" class="button" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('<?php echo JText::_( 'GMAPFP_CHOISIR_DANS_LISTE' ).' '.JText::_( 'JACTION_DELETE' ); ?>');}else{  submitbutton('remove')}">
@@ -60,11 +67,13 @@ if ($this->params->get('show_page_heading')) : ?>
             </button>
         </td> 
         <td> 
-            <button name="edit" class="button" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('<?php echo JText::_( 'GMAPFP_CHOISIR_DANS_LISTE' ).' '.JText::_( 'JACTION_EDIT' ); ?>');}else{  submitbutton('edit')}">
+		  <!--
+		    <button name="edit" class="button" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('<?php echo JText::_( 'GMAPFP_CHOISIR_DANS_LISTE' ).' '.JText::_( 'JACTION_EDIT' ); ?>');}else{  submitbutton('edit')}">
                 <span class="icon-32-edit" title="<?php echo JText::_( 'JACTION_EDIT' ); ?>"> 
                 </span> 
                 <?php echo '&nbsp;'.JText::_( 'JACTION_EDIT' ).'&nbsp;'; ?>
             </button>
+		   -->
         </td> 
         <td> 
             <button name="add" class="button" onclick="javascript: submitbutton('add')">

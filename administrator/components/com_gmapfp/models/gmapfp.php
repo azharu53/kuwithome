@@ -124,6 +124,7 @@ class GMapFPsModelGMapFP extends JModelLegacy
 
 		$data = JRequest::get( 'post' );
 		
+		$data['img'] = implode(",", $data['img']);
 		$data['occupant'] = implode(",", $data['occupant']);
 		$data['addfeature'] = implode(",", $data['addfeature']);
 		

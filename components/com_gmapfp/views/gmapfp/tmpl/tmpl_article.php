@@ -106,14 +106,20 @@ $loupe=JURI::base().'components/com_gmapfp/images/recherche.png';
 	<div class="gmapfp_detail">
 		<div class="gmapfp_taille1 pull-left">
 			<?php
-				if ($row->img!=null) { ?> 
+				if ($row->img !=null) {
+				if($img[0] != null || $img[0] != ''){
+				?> 
 				<a class="modal" href='<?php echo $image; ?>' >
 				<!-- <img src=<?php echo $image; ?> style="height:<?php echo $this->params->get('gmapfp_hauteur_img')?>px;"/> -->
 				<img src=<?php echo $image; ?> style="width:90%;"/>
 				<img src=<?php echo $loupe; ?> style="height:18px;"/>
 				</a> 
-				<?php }; ?>
-				<?php ?> 
+				<?php } else { ?>
+				<img src="<?php echo JURI::root().'images/gmapfp/blank/no.gif' ?>" style="width:90%;"/>
+				<?php } ?>
+				<?php } else { ?>
+				<img src="<?php echo JURI::root().'images/gmapfp/blank/no.gif' ?>" style="width:90%;"/>
+				<?php } ?> 
 		</div>
 		<div class="gmapfp_taille2 pull-left">
 			<?php
@@ -157,4 +163,5 @@ $loupe=JURI::base().'components/com_gmapfp/images/recherche.png';
 			}; ?>
 		</div>
 	<?php } ?>
+	
 </div>

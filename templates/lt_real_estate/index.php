@@ -127,7 +127,7 @@ if($custom_js = $this->helix3->getParam('custom_js')) {
     <?php
 
     $this->helix3->addCSS('bootstrap.min.css, font-awesome.min.css, default.css') // CSS Files
-        ->addJS('bootstrap.min.js, jquery.cookie.js, jquery.sticky.js, main.js, jquery.counterup.min.js, waypoints.min.js, jquery.easing.1.3.min.js, jquery.mixitup.min.js, jquery.stellar.min.js, wow.min.js, custom.js') // JS Files
+        ->addJS('bootstrap.min.js, jquery.cookie.js, jquery.sticky.js, main.js, jquery.counterup.min.js, waypoints.min.js, jquery.easing.1.3.min.js, jquery.mixitup.min.js, jquery.stellar.min.js, wow.min.js, custom.js, ajax.js') // JS Files
         ->lessInit()->setLessVariables(array(
             'preset'=>$this->helix3->Preset(),
             'bg_color'=> $this->helix3->PresetParam('_bg'),

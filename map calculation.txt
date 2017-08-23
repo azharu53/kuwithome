@@ -1,0 +1,17 @@
+lat_min = lat_center - 0.270;
+lat_max = lat_center + 0.270;
+long_min = long_center - (0.270 / Math.cos(lat_center*Math.PI/180);
+long_max = long_center + (0.270 / Math.cos(lat_center*Math.PI/180);
+
+
+  $address = $dlocation; // Google HQ
+  $prepAddr = str_replace(' ','+',$address);
+  $geocode=file_get_contents('https://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
+  $output= json_decode($geocode);
+  $latitude = $output->results[0]->geometry->location->lat;
+  $longitude = $output->results[0]->geometry->location->lng;
+
+
+
+string(14) "Salmiya Kuwait" float(29.3352938) float(48.0715612) 
+string(6) "Kuwait" float(29.31166) float(47.481766) 

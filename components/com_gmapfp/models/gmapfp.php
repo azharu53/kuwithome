@@ -208,10 +208,12 @@ class GMapFPsModelGMapFP extends JModelLegacy
 		};
 		
 		/**** Change 07232017 Start **/
+		$address ='';
 		if (count($_POST) > 0) {
 				if(isset($_POST['address']) && $_POST['address'] != ''){
 					$wheres[] = ' (adresse  like "%'.$_POST['address'].'%" OR adresse2 like "%'.$_POST['address'].'%"'.' OR ville  like "%'.$_POST['address'].'%" '
 					.' OR departement  like "%'.$_POST['address'].'%" '.' OR codepostal  like "%'.$_POST['address'].'%" )';
+					$address .= $_POST['address'].' '.$_POST['address'].' ';
 				}
 				
 				if(isset($_POST['propertytype']) && $_POST['propertytype'] != ''){
@@ -220,6 +222,7 @@ class GMapFPsModelGMapFP extends JModelLegacy
 				
 				if(isset($_POST['departement']) && $_POST['departement'] != ''){
 					$wheres[] = ' a.departement  = '.$db->Quote($_POST['departement']);
+					$address .= $_POST['departement'].' ';
 				}
 				
 				if(isset($_POST['budgetmin']) && $_POST['budgetmin'] != '' ) {
@@ -251,6 +254,48 @@ class GMapFPsModelGMapFP extends JModelLegacy
 				}
 			}
 		  
+		    $address .= ' Kuwait'; // Google HQ
+			$compon = @$_REQUEST['tmpl'];
+			$clat = @$_REQUEST['chalatitude'];
+			$clong = @$_REQUEST['chalongitude'];
+			
+			if($compon != 'component'){
+				if(!empty($clat) && !empty($clong)){
+					$lat_min = $clat - 0.270;
+					$lat_max = $clat + 0.270;
+					
+					$long_min = $clong - (0.270 / cos($clat*pi()/180));
+					$long_max = $clong + (0.270 / cos($clat*pi()/180));
+					
+					if($lat_min){
+						$wheres[] = '(( a.glat BETWEEN '.$lat_min.' AND '.$lat_max.') AND ( a.glng BETWEEN '.$long_min.' AND '.$long_max.') )';
+					}
+				}else {
+						
+				
+				$prepAddr = str_replace(' ','+',$address);
+				$geocode=file_get_contents('https://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
+				sleep(1);
+				
+				if(!empty($geocode)){
+					$output= json_decode($geocode);
+					$clat  = $output->results[0]->geometry->location->lat;
+					$clong = $output->results[0]->geometry->location->lng;
+					
+					$lat_min = $clat - 0.270;
+					$lat_max = $clat + 0.270;
+					
+					$long_min = $clong - (0.270 / cos($clat*pi()/180));
+					$long_max = $clong + (0.270 / cos($clat*pi()/180));
+					
+					if($lat_min){
+						$wheres[] = '(( a.glat BETWEEN '.$lat_min.' AND '.$lat_max.') AND ( a.glng BETWEEN '.$long_min.' AND '.$long_max.') )';
+					}
+				}
+			}
+			
+			}
+		
 		
 		/**** Change 07232017 End **/
 				
